@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>banner</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+
+  <ion-grid >
+    <ion-row>
+      <ion-col sizeLg="10" offsetLg="1" sizeMd="12" sizeSm="12" sizeXs="12">
+      
+        <ion-list>
+          <ion-item *ngFor="let banner of Banner">
+           
+            <!-- <ion-thumbnail slot="start" class="ion-margin-end" >
+            
+            </ion-thumbnail> -->
+          
+            <ion-toolbar >
+              <ion-img [src]="banner.imageUrl" style="width:20% ; height:20%;  margin-left: 15%; "></ion-img>
+            </ion-toolbar>
+            <ion-label> {{banner._id}} </ion-label>
+            <ion-buttons slot="end">
+              <!-- <ion-button (click)="openEditPage(banner)" color="success">
+                (click)="onClick()"
+               Edit
+              </ion-button> -->
+              <ion-button (click)="deleteBannerClick(banner._id)" color="danger" > <ion-icon slot="start" name="add"></ion-icon>
+               Delete
+              </ion-button>
+            </ion-buttons>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col size="6"></ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+

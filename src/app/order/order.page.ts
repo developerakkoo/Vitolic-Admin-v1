@@ -1,0 +1,42 @@
+import { Component, OnInit } from '@angular/core';
+import { OrderServiceService } from './order-service.service';
+import { Subscription } from 'rxjs';
+import { LoadingController } from '@ionic/angular';
+@Component({
+  selector: 'app-order',
+  templateUrl: './order.page.html',
+  styleUrls: ['./order.page.scss'],
+})
+export class OrderPage implements OnInit {
+  orders:any[] =[];
+
+  getOrderSubs: Subscription;
+  constructor(private carts: OrderServiceService, private loadingController: LoadingController) { }
+
+  ngOnInit() {
+
+    this.getAllCart();
+  }
+
+  async  getAllCart(){
+    let loading = await this.loadingController.create({
+      message:"Loading products...",
+      spinner:"lines"
+    })
+
+    await loading.present();
+  
+    this.getOrderSubs = this.carts. getAllCarts()
+    .subscribe(async(carts:any) =>{
+      console.log(carts);
+      this.orders = carts['cart'];
+      await loading.dismiss();
+    }, async (error)=>{
+      console.log(error);
+      
+    })
+    await loading.dismiss();
+    }
+  
+
+}

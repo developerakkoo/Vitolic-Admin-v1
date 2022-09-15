@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>add-subscription</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding Pincode_Form">
+    <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
+      <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+        <ion-label position="floating">Name</ion-label>
+        <ion-input formControlName="name" type="text"></ion-input>
+      </ion-item>
+      <span class="error ion-padding" *ngIf="isSubmitted && errorControl.name.errors?.required">
+        Name is required.
+      </span>
+      <span class="error ion-padding" *ngIf="isSubmitted && errorControl.name.errors?.minlength">
+        Name should be min 2 chars long.
+      </span>
+      <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input formControlName="email" type="email"></ion-input>
+      </ion-item>
+      <span class="error ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.required">
+        Email is required.
+      </span>
+      <span class="error ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.pattern">
+        Please provide valid email id.
+      </span>
+      <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+  <ion-label>Milk</ion-label>
+  <ion-select class="custom-options" formControlName="option">
+    <ion-select-option value="A1">A1</ion-select-option>
+    <ion-select-option value="A2">A2</ion-select-option>
+
+  </ion-select>
+</ion-item>
+
+<ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+  <ion-label>Delivery Frequency
+  </ion-label>
+  <ion-select class="custom-options" formControlName="Delivery">
+    <ion-select-option value="Monthly">Monthly</ion-select-option>
+    <ion-select-option value="Monthly">Monthly</ion-select-option>
+
+  </ion-select>
+</ion-item>
+<span class="error ion-padding" *ngIf="isSubmitted && errorControl.option.errors?.required">
+  Milk is required.
+</span>
+<span class="error ion-padding" *ngIf="isSubmitted && errorControl.option.errors?.pattern">
+  Please provide valid Milk id.
+</span>
+<ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+  <ion-label position="floating">Address</ion-label>
+  <ion-input formControlName="address" type="text"></ion-input>
+</ion-item>
+<span class="error ion-padding" *ngIf="isSubmitted && errorControl.address.errors?.required">
+  Address is required.
+</span>
+
+
+
+
+
+      <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+        <ion-label position="floating">Mobile</ion-label>
+        <ion-input maxlength="10" formControlName="mobile" type="text" required></ion-input>
+      </ion-item>
+      <span class="error ion-padding" *ngIf="isSubmitted && errorControl.mobile.errors?.required">
+        Mobile number is required.
+      </span>
+      <span class="error ion-padding" *ngIf="isSubmitted && errorControl.mobile.errors?.pattern">
+        Only numerical values allowed.
+      </span>
+     
+    
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+    </div>
+</ion-content>

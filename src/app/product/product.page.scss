@@ -1,0 +1,49 @@
+ion-toolbar{
+    --background: #21AD4B;
+    --color:#fff;
+}
+body {
+    cursor: url('http://ionicframework.com/img/finger.png'), auto;
+}
+
+.header .col {
+    background-color:lightgrey;
+}
+
+.col {
+    border: solid 1px grey;
+    border-bottom-style: none;
+    border-right-style: none;
+}
+
+.col:last-child {
+    border-right: solid 1px grey;
+}
+
+.row:last-child .col {
+    border-bottom: solid 1px grey;
+}
+
+
+// ion-grid {
+//     --ion-grid-column-padding: 10px;
+//     border-collapse: collapse;
+//     border-style: hidden;
+    
+    // ion-row:first-child {
+    //   background-color:  #2dd36f;
+    //   font-weight: bold;
+    // }
+//    .no {
+//       border: 1px solid black;
+//       border-bottom: 0;
+//       border-right: 0;
+//     }
+//    .no:last-child {
+//       border-right: 1px solid black;
+//     }
+    
+//     ion-row:last-child {
+//       border-bottom: 1px solid black;
+//     }
+//   }

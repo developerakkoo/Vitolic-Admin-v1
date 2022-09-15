@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-title>Product</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid >
+    <ion-row>
+      <ion-col sizeLg="8" offsetLg="1" sizeMd="12" sizeSm="12" sizeXs="12">
+        <!-- <ion-list> -->
+          <!-- <ion-grid class="ion-margin">
+            <ion-row>
+              <ion-col class="no">S.No</ion-col>
+              <ion-col class="no">Name</ion-col>
+              <ion-col class="no">Gender</ion-col>
+              <ion-col class="no">Country</ion-col>
+              <ion-col class="no">S.No</ion-col>
+              <ion-col class="no">Name</ion-col>
+              <ion-col class="no">Gender</ion-col>
+              <ion-col class="no">Country</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="no">S.No</ion-col>
+              <ion-col class="no">Name</ion-col>
+              <ion-col class="no">Gender</ion-col>
+              <ion-col class="no">Country</ion-col>
+              <ion-col class="no">S.No</ion-col>
+              <ion-col class="no">Name</ion-col>
+              <ion-col class="no">Gender</ion-col>
+              <ion-col class="no">Country</ion-col>
+            </ion-row>
+            
+          </ion-grid> -->
+          <ion-item *ngFor="let product of products">
+           
+            <ion-label> {{product.title}} </ion-label>
+            <ion-buttons slot="end">
+              <ion-button (click)="openEditPage(product)" color="success">
+                <!-- (click)="onClick()" -->
+               Edit
+              </ion-button>
+              <ion-button (click)="deleteProductClick(product._id)" color="danger" > <ion-icon slot="start" name="add"></ion-icon>
+               Delete
+              </ion-button>
+            </ion-buttons>
+          </ion-item>
+        <!-- </ion-list> -->
+      </ion-col>
+      <ion-col size="6"></ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+ 
