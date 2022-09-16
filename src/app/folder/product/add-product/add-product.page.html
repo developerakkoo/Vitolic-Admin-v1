@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title>Add Product</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/folder/product"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="6" offset="3">
+          <div class="ion-padding Pincode_Form">
+            <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
+              <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+                <ion-label position="floating">title
+                </ion-label>
+                <ion-input formControlName="title" type="text"></ion-input>
+              </ion-item>
+              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.title.errors?.required">
+                title is required.
+              </span>
+              
+              <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+                <ion-label position="floating">Email</ion-label>
+                <ion-input formControlName="email" type="email"></ion-input>
+              </ion-item>
+              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.required">
+                Email is required.
+              </span>
+              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.pattern">
+                Please provide valid email id.
+              </span>
+              
+              <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+                <ion-label position="floating">category</ion-label>
+                <ion-input formControlName="category" type="text" required></ion-input>
+              </ion-item>
+              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.category.errors?.required">
+                category number is required.
+              </span>
+              
+              <ion-item class="ion-margin-bottom Input_num" >
+                <!-- <ion-label position="floating">imge</ion-label> -->
+                <input (change)="fileEvent($event)" formControlName="file" type="file">
+              </ion-item>
+              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.name.errors?.required">
+               File is required.
+              </span>
+              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.name.errors?.minlength">
+               file should be min 2 chars long.
+              </span>
+            
+              <ion-row>
+                <ion-col>
+                  <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
+                </ion-col>
+              </ion-row>
+            </form>
+            </div>
+        </ion-col>
+        <ion-col size="6"></ion-col>
+      </ion-row>
+    </ion-grid>
+
+</ion-content>

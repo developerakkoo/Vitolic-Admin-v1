@@ -9,7 +9,7 @@ const routes: Routes = [
     component: OrderPage
   },
   {
-    path: 'edit-order',
+    path: 'edit-order/:id',
     loadChildren: () => import('./edit-order/edit-order.module').then( m => m.EditOrderPageModule)
   }
 ];

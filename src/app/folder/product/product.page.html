@@ -1,6 +1,10 @@
 <ion-header>
-  <ion-toolbar >
+  <ion-toolbar color="success" >
     <ion-title>Product</ion-title>
+    <ion-button color="light" fill="clear" slot="end" (click)="openAddProductPage()">
+      <ion-icon slot="start" name="add"></ion-icon>
+      Add New
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -33,14 +37,16 @@
             
           </ion-grid> -->
           <ion-item *ngFor="let product of products">
-           
+            <ion-avatar class="ion-margin-end">
+              <img [src]="product.imageUrl" />
+            </ion-avatar>
             <ion-label> {{product.title}} </ion-label>
             <ion-buttons slot="end">
               <ion-button (click)="openEditPage(product)" color="success">
                 <!-- (click)="onClick()" -->
                Edit
               </ion-button>
-              <ion-button (click)="deleteProductClick(product._id)" color="danger" > <ion-icon slot="start" name="add"></ion-icon>
+              <ion-button (click)="deleteProductClick(product._id)" color="danger" >
                Delete
               </ion-button>
             </ion-buttons>

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { OrderServiceService } from './order-service.service';
 import { Subscription } from 'rxjs';
@@ -11,7 +12,9 @@ export class OrderPage implements OnInit {
   orders:any[] =[];
 
   getOrderSubs: Subscription;
-  constructor(private carts: OrderServiceService, private loadingController: LoadingController) { }
+  constructor(private carts: OrderServiceService,
+     private loadingController: LoadingController,
+     private router: Router) { }
 
   ngOnInit() {
 
@@ -26,7 +29,7 @@ export class OrderPage implements OnInit {
 
     await loading.present();
   
-    this.getOrderSubs = this.carts. getAllCarts()
+    this.getOrderSubs = this.carts.getAllOrders()
     .subscribe(async(carts:any) =>{
       console.log(carts);
       this.orders = carts['cart'];
@@ -38,5 +41,10 @@ export class OrderPage implements OnInit {
     await loading.dismiss();
     }
   
+    openOrderDetailPage(cart){
+      console.log(cart);
+      this.router.navigate(['folder', 'order', 'edit-order', cart._id]);
+      
+    }
 
 }

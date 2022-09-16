@@ -9,6 +9,8 @@ export class AddProductPage implements OnInit {
   ionicForm: FormGroup;
 
   isSubmitted = false;
+  file: File;
+
  
   
   constructor(public formBuilder: FormBuilder) { }
@@ -24,6 +26,12 @@ export class AddProductPage implements OnInit {
   get errorControl() {
     return this.ionicForm.controls;
   }
+
+  fileEvent(ev){
+    console.log(ev.target.files);
+    
+    this.file = ev.target.files[0];
+  }
   submitForm() {
     this.isSubmitted = true;
     if (!this.ionicForm.valid) {
@@ -32,6 +40,11 @@ export class AddProductPage implements OnInit {
     } else {
       console.log(this.ionicForm.value)
     }
+
+    let formdata = new FormData();
+
+    formdata.append("file", this.file, this.file.name);
+
   }
 
 

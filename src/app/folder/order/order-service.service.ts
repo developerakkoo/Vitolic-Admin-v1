@@ -23,7 +23,11 @@ export class OrderServiceService {
 
   // }
 
-  getAllCarts(){
+  getOrderById(id){
+    return this.http.get(environment.Url +"/cart/"+id);
+  }
+
+  getAllOrders(){
     return this.http.get(environment.Url +'/cart');
   }
 }

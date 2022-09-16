@@ -24,8 +24,12 @@ export class ProductPage implements OnInit {
   }
   openEditPage(product){
     console.log(product._id);
-    this.router.navigate(['product','edit-product', product._id]);
+    this.router.navigate(['folder','product','edit-product', product._id]);
     
+  }
+  openAddProductPage(){
+    this.router.navigate(['folder','product','add-product']);
+
   }
 
   IonViewDidLeave(){

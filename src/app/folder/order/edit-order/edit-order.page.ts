@@ -8,10 +8,26 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./edit-order.page.scss'],
 })
 export class EditOrderPage implements OnInit {
+  orderId;
+
   OrderEdit: FormGroup;
-  constructor(private carts: OrderServiceService,public formBuilder: FormBuilder,
+  constructor(private orderService: OrderServiceService,public formBuilder: FormBuilder,
     private router: Router, private route: ActivatedRoute, 
-    ) { }
+    ) {
+      this.orderId = this.route.snapshot.paramMap.get("id");
+      this.getOrderById(this.orderId);
+         }
+
+
+  getOrderById(orderId: any) {
+    this.orderService.getOrderById(orderId).subscribe((order) =>{
+      console.log(order);
+      
+    },(error) =>{
+      console.log(error);
+      
+    })
+  }
 
   ngOnInit() {
     this.OrderEdit = this.formBuilder.group({
