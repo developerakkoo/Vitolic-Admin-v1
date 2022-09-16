@@ -23,8 +23,10 @@ export class EditProductPage implements OnInit {
       title: ['', [Validators.required, Validators.minLength(2)]],
       price: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       category: ['', [Validators.required]],
-      discountedPrice :['',[Validators.required]]
-      // file:['',Validators.required]
+      discountedPrice :['',[Validators.required]],
+      imageUrl:['',Validators.required],
+      inStock:['',Validators.required],
+      stock :['',Validators.required],
 
     })
     this._productId = this.route.snapshot.paramMap.get("id");
@@ -42,7 +44,7 @@ export class EditProductPage implements OnInit {
     
     this.productS.getProductById(this._productId).subscribe(async (product) =>{
       console.log(product);
-      this.ionicForm.setValue({title: product['products']['title'] ,price: product['products']['price'],category: product['products']['category'], discountedPrice: product['products']['discountedPrice'],   });
+      this.ionicForm.setValue({title:product['products']['title'],price:product['products']['price'],category: product['products']['category'], discountedPrice:product['products']['discountedPrice'],imageUrl:product['products']['imageUrl'],inStock :product['products']['inStock'],stock:product['products']['stock'],   });
       await loading.dismiss();
     
     },async (error) =>{

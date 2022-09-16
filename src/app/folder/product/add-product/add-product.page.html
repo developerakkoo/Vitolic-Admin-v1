@@ -22,20 +22,38 @@
               <span class="error ion-padding" *ngIf="isSubmitted && errorControl.title.errors?.required">
                 title is required.
               </span>
-              
               <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
-                <ion-label position="floating">Email</ion-label>
-                <ion-input formControlName="email" type="email"></ion-input>
+                <ion-label position="floating"> Price</ion-label>
+                <ion-input formControlName="Price" type="Price"></ion-input>
               </ion-item>
-              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.required">
-                Email is required.
+              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.Price.errors?.required">
+                Price is required.
               </span>
-              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.pattern">
-                Please provide valid email id.
+              <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+                <ion-label position="floating">Discounted Price</ion-label>
+                <ion-input formControlName="discountedPrice" type="DiscountedPrice"></ion-input>
+              </ion-item>
+              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.Discounted.errors?.required">
+                DiscountedPrice is required.
               </span>
+              <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+                <ion-label position="floating">Stock</ion-label>
+                <ion-input formControlName="Stock" type="Stock"></ion-input>
+              </ion-item>
+              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.Stock.errors?.required">
+                Stock is required.
+              </span>
+              <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+                <ion-label position="floating">In-Stock</ion-label>
+                <ion-input formControlName="In_Stock" type="In_Stock"></ion-input>
+              </ion-item>
+              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.In_Stock.errors?.required">
+                In-Stock is required.
+              </span>
+        
               
               <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
-                <ion-label position="floating">category</ion-label>
+                <ion-label position="floating">Category</ion-label>
                 <ion-input formControlName="category" type="text" required></ion-input>
               </ion-item>
               <span class="error ion-padding" *ngIf="isSubmitted && errorControl.category.errors?.required">

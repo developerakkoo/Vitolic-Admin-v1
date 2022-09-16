@@ -12,30 +12,6 @@
   <ion-grid >
     <ion-row>
       <ion-col sizeLg="8" offsetLg="1" sizeMd="12" sizeSm="12" sizeXs="12">
-        <!-- <ion-list> -->
-          <!-- <ion-grid class="ion-margin">
-            <ion-row>
-              <ion-col class="no">S.No</ion-col>
-              <ion-col class="no">Name</ion-col>
-              <ion-col class="no">Gender</ion-col>
-              <ion-col class="no">Country</ion-col>
-              <ion-col class="no">S.No</ion-col>
-              <ion-col class="no">Name</ion-col>
-              <ion-col class="no">Gender</ion-col>
-              <ion-col class="no">Country</ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col class="no">S.No</ion-col>
-              <ion-col class="no">Name</ion-col>
-              <ion-col class="no">Gender</ion-col>
-              <ion-col class="no">Country</ion-col>
-              <ion-col class="no">S.No</ion-col>
-              <ion-col class="no">Name</ion-col>
-              <ion-col class="no">Gender</ion-col>
-              <ion-col class="no">Country</ion-col>
-            </ion-row>
-            
-          </ion-grid> -->
           <ion-item *ngFor="let product of products">
             <ion-avatar class="ion-margin-end">
               <img [src]="product.imageUrl" />
