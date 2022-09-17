@@ -19,7 +19,7 @@ export class DeliverBoyPage implements OnInit {
   }
   openEditPage(delivers){
     console.log(delivers._id);
-    this.router.navigate(['deliver-boy','edit-deliver-boy', delivers._id]);
+    this.router.navigate(['folder','deliver-boy','edit-deliver-boy', delivers._id]);
     
   }
 

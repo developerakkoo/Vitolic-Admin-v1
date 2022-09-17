@@ -9,8 +9,11 @@ export class AddProductPage implements OnInit {
   ionicForm: FormGroup;
 
   isSubmitted = false;
-  file: File;
+  imageUrl: any;
+  fileToUpload: File= null;
+  // file: File;
 
+  item;
  
   
   constructor(public formBuilder: FormBuilder) { }
@@ -31,9 +34,15 @@ export class AddProductPage implements OnInit {
   }
 
   fileEvent(ev){
-    console.log(ev.target.files);
-    
-    this.file = ev.target.files[0];
+    if(ev.target.files){
+      // this.fileToUpload =File;
+      var reader=new FileReader();
+      reader.onload =(event:any)=>{
+      this.imageUrl=event.target.result;
+      }
+      reader.readAsDataURL(this.fileToUpload)
+    }
+
   }
   submitForm() {
     this.isSubmitted = true;
@@ -46,7 +55,7 @@ export class AddProductPage implements OnInit {
 
     let formdata = new FormData();
 
-    formdata.append("file", this.file, this.file.name);
+    // formdata.append("file", this.file, this.file.name);
 
   }
 

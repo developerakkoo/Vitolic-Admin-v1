@@ -64,4 +64,9 @@ export class BannerPage implements OnInit {
     })
   }
 
+  openAddProductPage(){
+    this.router.navigate(['folder','banner','add-banner']);
+
+  }
+
 }

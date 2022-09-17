@@ -21,7 +21,7 @@ export class UsersPage implements OnInit {
 
   openEditPage(user){
     console.log(user._id);
-    this.router.navigate(['users','edit-users', user._id]);
+    this.router.navigate(['folder', 'users','edit-users', user._id]);
     
   }
 

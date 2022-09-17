@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar >
     <ion-title>Edit Subscription</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,15 +9,13 @@
     <div class="ion-padding Pincode_Form">
     <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
       <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
-        <ion-label position="floating">milk</ion-label>
+        <ion-label position="floating">Milk</ion-label>
         <ion-input formControlName="milk" type="text"></ion-input>
       </ion-item>
       <span class="error ion-padding" *ngIf="isSubmitted && errorControl.name.errors?.required">
         Name is required.
       </span>
-      <span class="error ion-padding" *ngIf="isSubmitted && errorControl.name.errors?.minlength">
-        Name should be min 2 chars long.
-      </span>
+     
       <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
         <ion-label position="floating">emailId</ion-label>
         <ion-input formControlName="emailId" type="email"></ion-input>
@@ -52,6 +50,23 @@
         address is required.
       </span>
       
+      <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+        <ion-label position="floating">Delivery Frequency</ion-label>
+        <ion-input formControlName="deliveryFrequency" type="text"></ion-input>
+      </ion-item>
+      <span class="error ion-padding" *ngIf="isSubmitted && errorControl.deliveryFrequency.errors?.required">
+        Delivery Frequency is required.
+      </span>
+
+      <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+        <ion-label position="floating">Invoice Number</ion-label>
+        <ion-input formControlName="invoiceNumber" type="text"></ion-input>
+      </ion-item>
+      <span class="error ion-padding" *ngIf="isSubmitted && errorControl.invoiceNumber.errors?.required">
+        InvoiceNumber is required.
+      </span>
+
+
       <ion-row>
         <ion-col>
           <ion-button type="submit" color="danger" expand="block">Submit</ion-button>

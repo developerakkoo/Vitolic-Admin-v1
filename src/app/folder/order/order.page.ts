@@ -42,9 +42,10 @@ export class OrderPage implements OnInit {
     }
   
     openOrderDetailPage(cart){
-      console.log(cart);
+      // console.log(cart);
       this.router.navigate(['folder', 'order', 'edit-order', cart._id]);
       
     }
+    
 
 }

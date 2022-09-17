@@ -20,7 +20,7 @@ export class TotalCityPage implements OnInit {
   }
   openEditPage(TotalCity){
     console.log(TotalCity._id);
-    this.router.navigate(['total-city','edicity', TotalCity._id]);
+    this.router.navigate(['folder','total-city','edicity', TotalCity._id]);
     
   }
 

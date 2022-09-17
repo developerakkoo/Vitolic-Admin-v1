@@ -21,7 +21,7 @@ export class SubscriptionPage implements OnInit {
 
   openEditPage(subscript){
     console.log(subscript._id);
-    this.router.navigate(['subscription','edit-subscription', subscript._id]);
+    this.router.navigate(['folder','subscription','edit-subscription', subscript._id]);
     
   }
 

@@ -22,6 +22,9 @@ export class EditSubscriptionPage implements OnInit {
       address: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       milk: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       phone :['',[Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      deliveryFrequency :['',[Validators.required]],
+      invoiceNumber: ['',[Validators.required]],
+     
       // file:['',Validators.required]
 
     })
@@ -39,7 +42,9 @@ export class EditSubscriptionPage implements OnInit {
   
   this.Subs.getSubscriptionById(this._subscriptid).subscribe(async (subscript) =>{
     console.log(subscript);
-    this.ionicForm.setValue({emailId: subscript['subscription']['emailId'],address: subscript['subscription']['address'],milk:subscript['subscription']['milk'],phone: subscript['subscription']['phone'],});
+    this.ionicForm.setValue({emailId: subscript['subscription']['emailId'],address: subscript['subscription']['address'],milk:subscript['subscription']['milk'],phone: subscript['subscription']['phone'],deliveryFrequency: subscript['subscription']['deliveryFrequency'],
+    invoiceNumber:subscript['subscription']['invoiceNumber']
+  });
     await loading.dismiss();
   
   },async (error) =>{
