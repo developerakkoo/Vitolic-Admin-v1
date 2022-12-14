@@ -36,21 +36,21 @@
               <span class="error ion-padding" *ngIf="isSubmitted && errorControl.Discounted.errors?.required">
                 DiscountedPrice is required.
               </span>
-              <!-- <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+              <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
                 <ion-label position="floating">Stock</ion-label>
-                <ion-input formControlName="Stock" type="Stock"></ion-input>
+                <ion-input formControlName="Stock" type="Stock" placeholder="Available stock of item in count"></ion-input>
               </ion-item>
               <span class="error ion-padding" *ngIf="isSubmitted && errorControl.Stock.errors?.required">
                 Stock is required.
               </span>
-              <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
-                <ion-label position="floating">In-Stock</ion-label>
-                <ion-input formControlName="In_Stock" type="In_Stock"></ion-input>
+              <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline" >
+                <ion-label position="floating">Units</ion-label>
+                <ion-input formControlName="units" type="In_Stock" placeholder="liter/gram"></ion-input>
               </ion-item>
               <span class="error ion-padding" *ngIf="isSubmitted && errorControl.In_Stock.errors?.required">
-                In-Stock is required.
+               Units  is required.
               </span>
-         -->
+        
               
               <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
                 <ion-label position="floating">Category</ion-label>

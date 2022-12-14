@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  Url:"http://54.200.39.241"
+  Url:"https://api.consign.co.in"
 };
 
 /*

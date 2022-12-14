@@ -32,6 +32,10 @@ export class ProductPage implements OnInit {
 
   }
 
+  ionViewDidEnter(){
+    this.getAllProducts();
+  }
+
   IonViewDidLeave(){
     this.getProductSub.unsubscribe();
   }

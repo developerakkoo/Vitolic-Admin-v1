@@ -1,5 +1,9 @@
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { AlertController, LoadingController } from '@ionic/angular';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.page.html',
@@ -16,7 +20,11 @@ export class AddProductPage implements OnInit {
   item;
  
   
-  constructor(public formBuilder: FormBuilder) { }
+  constructor(public formBuilder: FormBuilder,
+              private http: HttpClient,
+              private router: Router,
+              private alertController: AlertController,
+              private loadingController: LoadingController) { }
 
   ngOnInit() {
     this.ionicForm = this.formBuilder.group({
@@ -25,7 +33,7 @@ export class AddProductPage implements OnInit {
       file: ['', [Validators.required, ] ],
       discountedPrice:['',[Validators.required]],
       Price:['',[Validators.required]],
-      In_Stock :['',[Validators.required]],
+      units :['',[Validators.required]],
       Stock :['',[Validators.required]]
     })
   }
@@ -34,28 +42,50 @@ export class AddProductPage implements OnInit {
   }
 
   fileEvent(ev){
-    if(ev.target.files){
-      // this.fileToUpload =File;
-      var reader=new FileReader();
-      reader.onload =(event:any)=>{
-      this.imageUrl=event.target.result;
-      }
-      reader.readAsDataURL(this.fileToUpload)
-    }
+    console.log(ev.target.files[0])
+    this.fileToUpload = ev.target.files[0];
+     
 
   }
-  submitForm() {
-    this.isSubmitted = true;
-    if (!this.ionicForm.valid) {
-      console.log('Please provide all the required values!')
-      return false;
-    } else {
-      console.log(this.ionicForm.value)
-    }
 
+ async presentLoading(msg){
+    let loading = await this.loadingController.create({
+      message: msg,
+      duration: 6000
+    })
+    
+    await loading.present();
+  }
+  submitForm() {
+   
+      console.log(this.ionicForm.value.title)
+
+      this.presentLoading("Add new product...");
+      
     let formdata = new FormData();
 
-    // formdata.append("file", this.file, this.file.name);
+    formdata.append("title", this.ionicForm.value.title);
+    formdata.append("category", this.ionicForm.value.category);
+    formdata.append("discountedPrice", this.ionicForm.value.discountedPrice);
+    formdata.append("price", this.ionicForm.value.Price);
+    formdata.append("units", this.ionicForm.value.units);
+    formdata.append("stock", this.ionicForm.value.Stock);
+    formdata.append("inStock", "true");
+    formdata.append("file", this.fileToUpload, this.fileToUpload.name);
+
+
+    this.http.post(environment.Url + '/products', formdata)
+    .subscribe((product) =>{
+      console.log(product);
+      
+      this.loadingController.dismiss();
+      this.router.navigate(['folder','product']);
+      
+    },async (err)=>{
+      this.loadingController.dismiss();
+    })
+    
+
 
   }
 

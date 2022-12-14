@@ -1,8 +1,11 @@
+import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../product.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-edit-product',
   templateUrl: './edit-product.page.html',
@@ -11,61 +14,102 @@ import { LoadingController } from '@ionic/angular';
 export class EditProductPage implements OnInit {
   _productId;
   ionicForm: FormGroup;
-  isSubmitted = false;
 
-  constructor(private router: Router, private route: ActivatedRoute,  private loadingController: LoadingController,
-              private productS: ProductService,public formBuilder: FormBuilder) {
-   
-   }
+  isSubmitted = false;
+  imageUrl: any;
+  fileToUpload: File = null;
+  // file: File;
+
+  item;
+
+  getProductSub: Subscription;
+  constructor(public formBuilder: FormBuilder,
+    private http: HttpClient,
+    private router: Router,
+    private productS: ProductService,
+    private alertController: AlertController,
+    private loadingController: LoadingController) { }
 
   ngOnInit() {
     this.ionicForm = this.formBuilder.group({
       title: ['', [Validators.required, Validators.minLength(2)]],
-      price: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       category: ['', [Validators.required]],
-      discountedPrice :['',[Validators.required]],
-      imageUrl:['',Validators.required],
-      inStock:['',Validators.required],
-      stock :['',Validators.required],
-
+      file: ['', [Validators.required,]],
+      discountedPrice: ['', [Validators.required]],
+      Price: ['', [Validators.required]],
+      units: ['', [Validators.required]],
+      Stock: ['', [Validators.required]]
     })
-    this._productId = this.route.snapshot.paramMap.get("id");
-    console.log(this._productId);
-    this.getProductById();
   }
-
-  async getProductById(){
-   
-      let loading = await this.loadingController.create({
-        message:"Loading products...",
-        spinner:"lines"
-      })
-      await loading.present();
-    
-    this.productS.getProductById(this._productId).subscribe(async (product) =>{
-      console.log(product);
-      this.ionicForm.setValue({title:product['products']['title'],price:product['products']['price'],category: product['products']['category'], discountedPrice:product['products']['discountedPrice'],imageUrl:product['products']['imageUrl'],inStock :product['products']['inStock'],stock:product['products']['stock'],   });
-      await loading.dismiss();
-    
-    },async (error) =>{
-      console.log(error);
-      
-    })
-    await loading.dismiss();
-  }
-
- 
- 
   get errorControl() {
     return this.ionicForm.controls;
   }
-  submitForm() {
-    this.isSubmitted = true;
-    if (!this.ionicForm.valid) {
-      console.log('Please provide all the required values!')
-      return false;
-    } else {
-      console.log(this.ionicForm.value)
-    }
+
+  fileEvent(ev) {
+    console.log(ev.target.files[0])
+    this.fileToUpload = ev.target.files[0];
+
+
   }
+  async getAllProducts() {
+    let loading = await this.loadingController.create({
+      message: "Loading products...",
+      spinner: "lines"
+    })
+
+    await loading.present();
+
+    this.getProductSub = this.productS.getAllProducts()
+      .subscribe(async (products: any) => {
+        console.log(products);
+
+        await loading.dismiss();
+      }, async (error) => {
+        console.log(error);
+        await loading.dismiss();
+
+      })
+  }
+
+  async presentLoading(msg) {
+    let loading = await this.loadingController.create({
+      message: msg,
+      duration: 6000
+    })
+
+    await loading.present();
+  }
+  submitForm() {
+
+    console.log(this.ionicForm.value.title)
+
+    this.presentLoading("Add new product...");
+
+    let formdata = new FormData();
+
+    formdata.append("title", this.ionicForm.value.title);
+    formdata.append("category", this.ionicForm.value.category);
+    formdata.append("discountedPrice", this.ionicForm.value.discountedPrice);
+    formdata.append("price", this.ionicForm.value.Price);
+    formdata.append("units", this.ionicForm.value.units);
+    formdata.append("stock", this.ionicForm.value.Stock);
+    formdata.append("inStock", "true");
+    formdata.append("file", this.fileToUpload, this.fileToUpload.name);
+
+
+    this.http.put(environment.Url + `/products/${this._productId}`, formdata)
+      .subscribe((product) => {
+        console.log(product);
+
+        this.loadingController.dismiss();
+        this.router.navigate(['folder', 'product']);
+
+      }, async (err) => {
+        this.loadingController.dismiss();
+      })
+
+
+
+  }
+
 }
