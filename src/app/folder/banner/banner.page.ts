@@ -25,7 +25,10 @@ export class BannerPage implements OnInit {
     
   // }
 
-  IonViewDidLeave(){
+  ionViewDidEnter(){
+    this.getAllBanner();
+  }
+  ionViewDidLeave(){
     this.getBannerSub.unsubscribe();
   }
 
@@ -53,14 +56,23 @@ export class BannerPage implements OnInit {
 
 
 
-  deleteBannerClick(id){
-    this.banner. deleteBanner(id)
+  async deleteBannerClick(id){
+    let loading = await this.loadingController.create({
+      message:"Loading Banner...",
+      spinner:"lines"
+    })
+  
+    await loading.present();
+    this.banner.deleteBanner(id)
     .subscribe(async (banner) =>{
       console.log(banner);
-      this. getAllBanner();
+      await loading.dismiss();
+      this.getAllBanner();
     }, async (error) =>{
+      await loading.dismiss();
+
       console.log(error);
-      
+            
     })
   }
 

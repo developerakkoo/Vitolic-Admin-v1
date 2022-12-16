@@ -12,6 +12,10 @@ export class OrderPage implements OnInit {
   orders:any[] =[];
 
   getOrderSubs: Subscription;
+  segmentValue:string;
+
+  isPaused;
+  isTerminated;
   constructor(private carts: OrderServiceService,
      private loadingController: LoadingController,
      private router: Router) { }
@@ -41,6 +45,11 @@ export class OrderPage implements OnInit {
     await loading.dismiss();
     }
   
+
+    segmentChanged(ev: Event){
+      console.log(ev);
+      
+    }
     openOrderDetailPage(cart){
       // console.log(cart);
       this.router.navigate(['folder', 'order', 'edit-order', cart._id]);

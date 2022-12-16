@@ -21,14 +21,19 @@ export class EditProductPage implements OnInit {
   // file: File;
 
   item;
+  isFileSelected: boolean = false;
+
 
   getProductSub: Subscription;
   constructor(public formBuilder: FormBuilder,
     private http: HttpClient,
     private router: Router,
+    private route: ActivatedRoute,
     private productS: ProductService,
     private alertController: AlertController,
-    private loadingController: LoadingController) { }
+    private loadingController: LoadingController) {
+      this._productId = this.route.snapshot.paramMap.get('id');
+     }
 
   ngOnInit() {
     this.ionicForm = this.formBuilder.group({
@@ -48,10 +53,14 @@ export class EditProductPage implements OnInit {
   fileEvent(ev) {
     console.log(ev.target.files[0])
     this.fileToUpload = ev.target.files[0];
-
+    this.isFileSelected = true;
 
   }
-  async getAllProducts() {
+
+  ionViewDidEnter(){
+    this.getProductById();
+  }
+  async getProductById() {
     let loading = await this.loadingController.create({
       message: "Loading products...",
       spinner: "lines"
@@ -59,10 +68,18 @@ export class EditProductPage implements OnInit {
 
     await loading.present();
 
-    this.getProductSub = this.productS.getAllProducts()
-      .subscribe(async (products: any) => {
-        console.log(products);
+    this.getProductSub = this.productS.getProductById(this._productId)
+      .subscribe(async (product: any) => {
+        console.log(product);
+        let title = product['products']['title'];
+        let price = product['products']['price'];
+        let discountedPrice = product['products']['discountedPrice'];
+        let category = product['products']['category'];
+        let stock = product['products']['stock'];
+        let units = product['products']['units'];
+        this.imageUrl = product['products']['imageUrl'];
 
+        this.ionicForm.setValue({title: title , Price: price, discountedPrice: discountedPrice, category: category,Stock: stock, units: units, file: ""})
         await loading.dismiss();
       }, async (error) => {
         console.log(error);
@@ -83,9 +100,10 @@ export class EditProductPage implements OnInit {
 
     console.log(this.ionicForm.value.title)
 
-    this.presentLoading("Add new product...");
+    this.presentLoading("Updating product...");
 
-    let formdata = new FormData();
+    if(this.isFileSelected == true){
+      let formdata = new FormData();
 
     formdata.append("title", this.ionicForm.value.title);
     formdata.append("category", this.ionicForm.value.category);
@@ -95,6 +113,30 @@ export class EditProductPage implements OnInit {
     formdata.append("stock", this.ionicForm.value.Stock);
     formdata.append("inStock", "true");
     formdata.append("file", this.fileToUpload, this.fileToUpload.name);
+
+
+    this.http.put(environment.Url + `/products/image/${this._productId}`, formdata)
+      .subscribe((product) => {
+        console.log(product);
+
+        this.loadingController.dismiss();
+        this.router.navigate(['folder', 'product']);
+
+      }, async (err) => {
+        this.loadingController.dismiss();
+      })
+
+    }else {
+      let formdata = new FormData();
+
+    formdata.append("title", this.ionicForm.value.title);
+    formdata.append("category", this.ionicForm.value.category);
+    formdata.append("discountedPrice", this.ionicForm.value.discountedPrice);
+    formdata.append("price", this.ionicForm.value.Price);
+    formdata.append("units", this.ionicForm.value.units);
+    formdata.append("stock", this.ionicForm.value.Stock);
+    formdata.append("inStock", "true");
+    formdata.append("imageUrl", this.imageUrl);
 
 
     this.http.put(environment.Url + `/products/${this._productId}`, formdata)
@@ -108,6 +150,7 @@ export class EditProductPage implements OnInit {
         this.loadingController.dismiss();
       })
 
+    }
 
 
   }

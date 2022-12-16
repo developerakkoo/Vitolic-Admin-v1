@@ -11,8 +11,8 @@
 
 <ion-content>
 
-
-  <ion-grid >
+ <p *ngIf="Banner.length == 0"> No Banners</p>
+  <ion-grid *ngIf="Banner.length > 0">
     <ion-row>
       <ion-col sizeLg="10" offsetLg="1" sizeMd="12" sizeSm="12" sizeXs="12">
       

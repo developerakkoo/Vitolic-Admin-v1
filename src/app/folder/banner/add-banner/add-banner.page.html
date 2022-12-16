@@ -6,10 +6,10 @@
 
 <ion-content>
   <div class="ion-padding Pincode_Form">
-    <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
+  
       <ion-item class="ion-margin-bottom Input_num" >
         <!-- <ion-label position="floating">imge</ion-label> -->
-        <ion-input formControlName="file" type="file"></ion-input>
+        <input (change)="fileEvent($event)" type="file">
       </ion-item>
       <span class="error ion-padding" *ngIf="isSubmitted && errorControl.file.errors?.required">
         File is required.
@@ -20,10 +20,9 @@
     
       <ion-row>
         <ion-col>
-          <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
+          <ion-button (click)="submitForm()" type="submit" color="danger" expand="block">Submit</ion-button>
         </ion-col>
       </ion-row>
-    </form>
     
     </div>
     

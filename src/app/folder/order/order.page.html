@@ -6,7 +6,31 @@
 
 <ion-content>
 
-
+<ion-segment value="all" (ionChange)="segmentChanged($event)">
+  <ion-segment-button value="all">
+    <ion-label>All</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="paused">
+    <ion-label>Paused</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="terminated">
+    <ion-label>Terminated</ion-label>
+  </ion-segment-button>
+</ion-segment>
+<ion-searchbar placeholder="Filter orders" inputmode="decimal" type="decimal"></ion-searchbar>
+<ion-item>
+  <ion-chip color="primary" mode="ios" outline="true">
+    <ion-label>Daily</ion-label>
+  </ion-chip>
+  <ion-chip color="primary" mode="ios" outline="true">
+    <ion-label>Alternate</ion-label>
+  </ion-chip>
+  <ion-chip color="primary" mode="ios" outline="true">
+    <ion-label>Custom</ion-label>
+  </ion-chip>  <ion-chip color="primary" mode="ios" outline="true">
+    <ion-label>One time</ion-label>
+  </ion-chip>
+</ion-item>
   <ion-grid >
     <ion-row>
       <ion-col sizeLg="8" offsetLg="1" sizeMd="12" sizeSm="12" sizeXs="12">
@@ -17,8 +41,6 @@
             <ion-label slot="end">{{cart.createdAt | date}}</ion-label>
             <ion-buttons slot="end">
               <ion-button (click)="openOrderDetailPage(cart)" color="success" >
-               
-       
                View
               </ion-button>
            
