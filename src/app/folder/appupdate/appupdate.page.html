@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>App Update Release</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-grid fixed>
+  <ion-row>
+    <ion-col size="6">
+      <form [formGroup]="appUpdateForm" (ngSubmit)="onSubmit()">
+        <ion-item>
+          <ion-label position="floating">Version <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required formControlName="version" type="number"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Description <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required formControlName="title" type="text"></ion-input>
+        </ion-item>
+        <ion-button block color="primary" type="submit" [disabled]="appUpdateForm.invalid">
+          Update
+        </ion-button>
+      </form>
+    </ion-col>
+    <ion-col size="6"></ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

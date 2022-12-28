@@ -22,12 +22,13 @@
   <ion-chip color="primary" mode="ios" outline="true">
     <ion-label>Daily</ion-label>
   </ion-chip>
-  <ion-chip color="primary" mode="ios" outline="true">
+  <ion-chip color="secondary" mode="ios" outline="true">
     <ion-label>Alternate</ion-label>
   </ion-chip>
-  <ion-chip color="primary" mode="ios" outline="true">
+  <ion-chip color="tertiary" mode="ios" outline="true">
     <ion-label>Custom</ion-label>
-  </ion-chip>  <ion-chip color="primary" mode="ios" outline="true">
+  </ion-chip> 
+   <ion-chip color="dark" mode="ios" outline="true">
     <ion-label>One time</ion-label>
   </ion-chip>
 </ion-item>
@@ -36,7 +37,10 @@
       <ion-col sizeLg="8" offsetLg="1" sizeMd="12" sizeSm="12" sizeXs="12">
         <ion-list>
           <ion-item *ngFor="let cart of orders">
-            <ion-label slot="start"> <strong>Address:</strong> {{cart.address.useradd}}</ion-label>
+            <ion-avatar>
+              <img [src]="cart?.products[0]?.imageUrl" />
+            </ion-avatar>
+            <ion-label slot="start"></ion-label>
 
             <ion-label slot="end">{{cart.createdAt | date}}</ion-label>
             <ion-buttons slot="end">

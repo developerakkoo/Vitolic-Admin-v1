@@ -39,7 +39,19 @@ const routes: Routes = [
   {
     path: 'total-city',
     loadChildren: () => import('./total-city/total-city.module').then( m => m.TotalCityPageModule)
+  },  {
+    path: 'appupdate',
+    loadChildren: () => import('./appupdate/appupdate.module').then( m => m.AppupdatePageModule)
   },
+  {
+    path: 'policy',
+    loadChildren: () => import('./policy/policy.module').then( m => m.PolicyPageModule)
+  },
+  {
+    path: 'issues',
+    loadChildren: () => import('./issues/issues.module').then( m => m.IssuesPageModule)
+  },
+
   // {
   //   path: 'refund',
   //   loadChildren:()

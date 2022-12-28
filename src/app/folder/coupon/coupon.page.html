@@ -1,6 +1,10 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>coupon</ion-title>
+    <ion-title>Promo</ion-title>
+    <ion-button slot="end"  (click)="openAddCouponPage()">
+      <ion-icon slot="start" name="add"></ion-icon>
+      Add Promo
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -10,23 +14,17 @@
     <ion-row>
       <ion-col sizeLg="10" offsetLg="1" sizeMd="12" sizeSm="12" sizeXs="12">
         <ion-list>
-          <ion-item>
-            <ion-label></ion-label>
-            <ion-label> </ion-label>
-            <ion-label> </ion-label>
-            <label></label>
-            <ion-label></ion-label>
-            <ion-label></ion-label>
-            <!-- <ion-buttons slot="end">
-              <ion-button (click)=" openEditPage(subscript)" color="success">
-              
-               Edit
-              </ion-button>
-              <ion-button (click)="deletesubscriptClick(subscript._id)" color="danger" > <ion-icon slot="start" name="add"></ion-icon>
-               Delete
-              </ion-button>
-            </ion-buttons> -->
-          </ion-item>
+         <ion-item *ngFor="let item of coupons">
+          <ion-label>
+            <p>Offer:- {{item.offer}}</p>
+
+            <p>CODE:- {{item.promoCode}}</p>
+            <p>Max Amount:- {{item.maxAmount | currency:"INR"}}</p>
+          </ion-label>
+          <ion-button (click)="delete(item._id)" slot="end">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-button>
+         </ion-item>
         </ion-list>
       </ion-col>
       <ion-col size="6"></ion-col>

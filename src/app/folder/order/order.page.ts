@@ -17,7 +17,7 @@ export class OrderPage implements OnInit {
   isPaused;
   isTerminated;
   constructor(private carts: OrderServiceService,
-     private loadingController: LoadingController,
+     private loadingController: LoadingController, 
      private router: Router) { }
 
   ngOnInit() {

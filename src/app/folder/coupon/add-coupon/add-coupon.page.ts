@@ -1,34 +1,60 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Router } from '@angular/router';
+import { LoadingController, ToastController } from '@ionic/angular';
+import { Subscription } from 'rxjs';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-add-coupon',
   templateUrl: './add-coupon.page.html',
   styleUrls: ['./add-coupon.page.scss'],
 })
 export class AddCouponPage implements OnInit {
-  ionicForm: FormGroup;
 
-  isSubmitted = false;
-  constructor(public formBuilder: FormBuilder) { }
+  offer;
+  code;
+  maxAmuont:number;
+  createCouponSub: Subscription;
+
+  constructor(private http: HttpClient,
+              private router: Router,
+              private loadingController: LoadingController,
+              private toastController: ToastController) { }
 
   ngOnInit() {
-     this.ionicForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
-      mobile: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      file: ['', [Validators.required, ] ]
+    
+  }
+
+
+  ionViewDidLeave(){
+    this.createCouponSub.unsubscribe();
+  }
+ 
+  async submitForm() {
+    let loading = await this.loadingController.create({
+      message: "Creating Coupon...",
+      duration: 9000
     })
-  }
-  get errorControl() {
-    return this.ionicForm.controls;
-  }
-  submitForm() {
-    this.isSubmitted = true;
-    if (!this.ionicForm.valid) {
-      console.log('Please provide all the required values!')
-      return false;
-    } else {
-      console.log(this.ionicForm.value)
+
+    await loading.present();
+    let body = {
+      offer: this.offer,
+      promoCode: this.code,
+      maxAmount: this.maxAmuont
     }
+
+    console.log(body);
+
+    this.createCouponSub = this.http.post(environment.Url + '/promo', body)
+    .subscribe(async (c) =>{
+      console.log(c);
+      await loading.dismiss();
+      this.router.navigate(['folder', 'coupon']);
+    }, async (error) =>{
+      await loading.dismiss();
+
+    })
+    
   }
 }
