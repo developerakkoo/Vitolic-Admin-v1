@@ -7,12 +7,13 @@ import { IonicModule } from '@ionic/angular';
 import { OrderPageRoutingModule } from './order-routing.module';
 
 import { OrderPage } from './order.page';
-
+import { FilterPipeModule } from 'ngx-filter-pipe';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    FilterPipeModule,
     OrderPageRoutingModule
   ],
   declarations: [OrderPage]

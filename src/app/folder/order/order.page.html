@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar color="success">
     <ion-title>Order</ion-title>
+    <ion-badge slot="end" color="primary" mode="ios"> Order Count {{orders.length || 0}} </ion-badge>
   </ion-toolbar>
 </ion-header>
 
@@ -8,7 +9,7 @@
 
 <ion-segment value="all" (ionChange)="segmentChanged($event)">
   <ion-segment-button value="all">
-    <ion-label>All</ion-label>
+    <ion-label>All  </ion-label> 
   </ion-segment-button>
   <ion-segment-button value="paused">
     <ion-label>Paused</ion-label>
@@ -17,8 +18,8 @@
     <ion-label>Terminated</ion-label>
   </ion-segment-button>
 </ion-segment>
-<ion-searchbar placeholder="Filter orders" inputmode="decimal" type="decimal"></ion-searchbar>
-<ion-item>
+<ion-searchbar placeholder="Order Id" [(ngModel)]="orderFilter.orderId" inputmode="decimal" type="decimal"></ion-searchbar>
+<!-- <ion-item>
   <ion-chip color="primary" mode="ios" outline="true">
     <ion-label>Daily</ion-label>
   </ion-chip>
@@ -31,28 +32,29 @@
    <ion-chip color="dark" mode="ios" outline="true">
     <ion-label>One time</ion-label>
   </ion-chip>
-</ion-item>
+</ion-item> -->
   <ion-grid >
     <ion-row>
-      <ion-col sizeLg="8" offsetLg="1" sizeMd="12" sizeSm="12" sizeXs="12">
+      <ion-col>
         <ion-list>
-          <ion-item *ngFor="let cart of orders">
-            <ion-avatar>
+      
+          <ion-item *ngFor="let cart of orders |  filterBy: orderFilter" detail>
+            <ion-avatar slot="start">
               <img [src]="cart?.products[0]?.imageUrl" />
             </ion-avatar>
-            <ion-label slot="start"></ion-label>
-
-            <ion-label slot="end">{{cart.createdAt | date}}</ion-label>
-            <ion-buttons slot="end">
-              <ion-button (click)="openOrderDetailPage(cart)" color="success" >
-               View
-              </ion-button>
-           
-            </ion-buttons>
+            <ion-label>
+              <p>Order Id: {{cart?.orderId}}</p>
+              <p>Order Total: {{cart?.total | currency:"INR"}}</p>
+              <p>Frequency: {{cart?.type}}</p>
+            </ion-label>
           </ion-item>
+
+          <ion-item  *ngIf="(orders | filterBy:orderFilter).length === 0">
+            <ion-label>No Orders</ion-label>
+          </ion-item>
+          
         </ion-list>
       </ion-col>
-      <ion-col size="6"></ion-col>
     </ion-row>
   </ion-grid>
 

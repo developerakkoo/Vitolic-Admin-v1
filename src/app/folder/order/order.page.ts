@@ -11,9 +11,14 @@ import { LoadingController } from '@ionic/angular';
 export class OrderPage implements OnInit {
   orders:any[] =[];
 
-  getOrderSubs: Subscription;
-  segmentValue:string;
 
+
+
+  getOrderSubs: Subscription;
+  getOrderPauseSubs: Subscription;
+  getOrderTermSubs: Subscription;
+  segmentValue:string;
+  orderFilter: any= {orderId: ''};
   isPaused;
   isTerminated;
   constructor(private carts: OrderServiceService,
@@ -46,9 +51,50 @@ export class OrderPage implements OnInit {
     }
   
 
-    segmentChanged(ev: Event){
+    getOrderPaused(){
+      this.getOrderPauseSubs = this.carts.getOrderPaused().subscribe(async(paused) =>{
+        console.log("paused order");
+        this.orders = paused['cart'];
+      },async(err) =>{
+        console.log(err);
+        
+      }, () =>{
+        this.getOrderPauseSubs.unsubscribe();
+      })
+    }
+
+
+    getOrderTerminated(){
+      this.getOrderTermSubs = this.carts.getOrderTerminated().subscribe(async(paused) =>{
+        console.log("term order");
+        this.orders = paused['cart'];
+        console.log(paused);
+        
+      },async(err) =>{
+        console.log(err);
+        
+      }, () =>{
+        this.getOrderPauseSubs.unsubscribe();
+      })
+    }
+    segmentChanged(ev){
       console.log(ev);
-      
+      let value = ev.detail.value;
+      if(value == 'paused'){
+        this.getOrderPaused();
+        return;
+      }
+
+      if(value == 'terminated'){
+        this.getOrderTerminated();
+        return;
+      }
+
+      if(value == 'all'){
+        this.getAllCart();
+        return;
+      }
+
     }
     openOrderDetailPage(cart){
       // console.log(cart);

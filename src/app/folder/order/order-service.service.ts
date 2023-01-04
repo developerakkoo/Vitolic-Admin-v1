@@ -23,6 +23,13 @@ export class OrderServiceService {
 
   // }
 
+  getOrderPaused(){
+    return this.http.get(environment.Url +`/cart/paused`);
+  }
+
+  getOrderTerminated(){
+    return this.http.get(environment.Url +`/cart/terminated`);
+  }
   getOrderById(id){
     return this.http.get(environment.Url +"/cart/"+id);
   }
