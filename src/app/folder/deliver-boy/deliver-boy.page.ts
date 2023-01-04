@@ -23,6 +23,9 @@ export class DeliverBoyPage implements OnInit {
     
   }
 
+  openAddDeliverBoyPage(){
+    this.router.navigate(['add-boy']);
+  }
   IonViewDidLeave(){
     this.getDeliverBoySub.unsubscribe();
   }

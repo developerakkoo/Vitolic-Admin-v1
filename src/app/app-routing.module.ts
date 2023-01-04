@@ -43,7 +43,11 @@ const routes: Routes = [
   {
     path: 'setting',
     loadChildren: () => import('./setting/setting.module').then( m => m.SettingPageModule)
+  },  {
+    path: 'add-boy',
+    loadChildren: () => import('./deliver-boy/add-boy/add-boy.module').then( m => m.AddBoyPageModule)
   },
+
   
 ];
 
