@@ -17,21 +17,21 @@ export class AddBoyPage implements OnInit {
   registerForm: FormGroup;
   registerBoySub: Subscription;
   constructor(private fb: FormBuilder,
-              private alertController: AlertController,
-              private loadingController: LoadingController,
-              private http: HttpClient,
-              private router: Router,
-              private auth: AngularFireAuth,
-              ) { 
-                this.registerForm = this.fb.group({
-                  email: ['', [Validators.required]],
-                  password:['', [Validators.required]],
-                  fullName: ['', [Validators.required]],
-                  contactNumber: ['', [Validators.required, Validators.min(10)]],
-                  boyPincode:['',[Validators.required, Validators.min(6)]],
-                  boyLandmark:['', [Validators.required]]
-                })
-              }
+    private alertController: AlertController,
+    private loadingController: LoadingController,
+    private http: HttpClient,
+    private router: Router,
+    private auth: AngularFireAuth,
+  ) {
+    this.registerForm = this.fb.group({
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      fullName: ['', [Validators.required]],
+      contactNumber: ['', [Validators.required, Validators.min(10)]],
+      boyPincode: ['', [Validators.required, Validators.min(6)]],
+      boyLandmark: ['', [Validators.required]]
+    })
+  }
 
   ngOnInit() {
   }
@@ -43,7 +43,7 @@ export class AddBoyPage implements OnInit {
       message: msg,
       buttons: ['OK']
     });
-  
+
     await alert.present();
   }
 
@@ -56,39 +56,32 @@ export class AddBoyPage implements OnInit {
   }
 
 
-  onSubmit(){
+  onSubmit() {
     this.presentLoading();
-    this.auth.createUserWithEmailAndPassword(this.registerForm.value.email,
-                                                this.registerForm.value.password)
-                                                .then(async (success) =>{
-                                                  console.log(success);
-                                                  let body = {
-                                                    fullName: this.registerForm.value.fullName,
-                                                    email: this.registerForm.value.email,
-                                                    password: this.registerForm.value.password,
-                                                    contactNumber: this.registerForm.value.contactNumber,
-                                                    boyPincode: this.registerForm.value.boyPincode,
-                                                    boyLandmark: this.registerForm.value.boyLandmark
-                                                  }
-                                                  this.registerBoySub = this.http.post(environment.Url +`/boy/register/`, body)
-                                                  .subscribe(async (boy) =>{
-                                                    console.log(boy);
-                                                    this.loadingController.dismiss()
-                                                    this.router.navigate(['folder', 'deliver-boy'])
-                                                  }, async (error) =>{
-                                                    console.log(error);
-                                                    this.loadingController.dismiss()
-                                                    
-                                                  }, () =>{
-                                                    this.registerBoySub.unsubscribe();
-                                                    this.loadingController.dismiss()
-                                                  
-                                                  })
-                                                }).catch(async (error) =>{
-                                                  console.log(error);
-                                                  this.loadingController.dismiss()
-                                                  
-                                                })
+
+    let body = {
+      fullName: this.registerForm.value.fullName,
+      email: this.registerForm.value.email,
+      password: this.registerForm.value.password,
+      contactNumber: this.registerForm.value.contactNumber,
+      boyPincode: this.registerForm.value.boyPincode,
+      boyLandmark: this.registerForm.value.boyLandmark
+    }
+    this.registerBoySub = this.http.post(environment.Url + `/boy/register/`, body)
+      .subscribe(async (boy) => {
+        console.log(boy);
+        this.loadingController.dismiss()
+        this.router.navigate(['folder', 'deliver-boy'])
+      }, async (error) => {
+        console.log(error);
+        this.loadingController.dismiss()
+
+      }, () => {
+        this.registerBoySub.unsubscribe();
+        this.loadingController.dismiss()
+
+      })
+
   }
 
 
