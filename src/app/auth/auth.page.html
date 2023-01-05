@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login to Vitolic Admin</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-grid fixed>
+  <ion-row>
+    <ion-col size="6" offset="3" style="margin-top: 30vh ;">
+      <ion-text color="primary" class="ion-text-center">
+        <h1>VITOLIC FOODS</h1>
+      </ion-text>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <ion-item>
+          <ion-label position="floating">E-Mail <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required formControlName="email" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Password <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required formControlName="password" type="text"></ion-input>
+        </ion-item>
+        <ion-button block color="primary" type="submit" [disabled]="loginForm.invalid">
+          Login
+        </ion-button>
+      </form>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

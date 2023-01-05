@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -19,5 +21,18 @@ export class AppComponent {
     { title: 'Privacy Policy', url: '/folder/policy', icon: 'document' },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {}
+
+ public isAuth: boolean = false;
+  constructor(private auth: AngularFireAuth,
+    private router: Router) {}
+
+
+  logout(){
+    this.auth.signOut().then((value) =>{
+      console.log(value);
+      this.isAuth = true;
+      this.router.navigate(['auth']);
+      
+    })
+  }
 }

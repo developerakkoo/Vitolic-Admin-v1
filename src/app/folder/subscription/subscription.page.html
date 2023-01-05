@@ -1,7 +1,19 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Subscription</ion-title>
+    <ion-badge slot="end" color="tertiary" mode="ios">Total Subscription  {{subscription.length}} </ion-badge>
   </ion-toolbar>
+  <ion-segment value="DAILY" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="DAILY">
+      <ion-label>Daily</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="ALTERNATE">
+      <ion-label>Alternate</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="CUSTOM">
+      <ion-label>Custom</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 </ion-header>
 
 <ion-content>
@@ -9,28 +21,19 @@
 
   <ion-grid >
     <ion-row>
-      <ion-col sizeLg="10" offsetLg="1" sizeMd="12" sizeSm="12" sizeXs="12">
+      <ion-col sizeLg="6" offset="3">
         <ion-list>
-          <ion-item *ngFor="let subscript of subscript">
-            <ion-label>{{subscript.emailId}}</ion-label>
-            <ion-label> {{subscript.milk}} </ion-label>
-            <ion-label> {{subscript.phone}} </ion-label>
-            <label>{{subscript.eliveryPerson}}</label>
-            <ion-label>{{subscript.customerName}}</ion-label>
-            <ion-label>{{subscript.address}}</ion-label>
-            <ion-buttons slot="end">
-              <ion-button (click)=" openEditPage(subscript)" color="success">
-                <!-- (click)="onClick()" -->
-               Edit
-              </ion-button>
-              <ion-button (click)="deletesubscriptClick(subscript._id)" color="danger" > <ion-icon slot="start" name="add"></ion-icon>
-               Delete
-              </ion-button>
-            </ion-buttons>
+          <ion-item *ngFor="let subscript of subscription" detail>
+            <ion-avatar>
+              <img [src]="subscript.imageUrl" alt="" srcset="">
+            </ion-avatar>
+            <ion-label class="ion-margin-start">
+              <p>{{subscript.deliveryFrequency}}</p>
+            </ion-label>
+            <ion-badge color="primary" mode="ios"> {{subscript.days.length}} </ion-badge>
           </ion-item>
         </ion-list>
       </ion-col>
-      <ion-col size="6"></ion-col>
     </ion-row>
   </ion-grid>
 
