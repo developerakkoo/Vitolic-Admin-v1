@@ -10,7 +10,7 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
   getAllUsers(){
-    return this.http.get(environment.Url +'/user');
+    return this.http.get(environment.Url +'/user/profiles');
   }
   addUsers(){
 

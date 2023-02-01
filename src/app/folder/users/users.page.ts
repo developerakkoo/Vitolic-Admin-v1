@@ -55,6 +55,10 @@ export class UsersPage implements OnInit {
     })
   }
 
+  sendNotification(token){
+    console.log(token);
+    
+  }
 
 
   deleteUsertClick(id){

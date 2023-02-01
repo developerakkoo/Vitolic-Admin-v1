@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  Url:"https://api.consign.co.in"
+  Url:"https://api.vitolicfoods.com"
 };
 
 /*
