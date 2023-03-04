@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   public appPages = [
+    { title: 'Analytics', url: '/folder/analytics', icon: 'stats-chart' },
     { title: 'Products', url: '/folder/product', icon: 'leaf' },
     { title: 'Orders', url: '/folder/order', icon: 'today' },
     { title: 'Users', url: '/folder/users', icon: 'person' },

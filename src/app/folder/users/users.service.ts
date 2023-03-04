@@ -21,7 +21,7 @@ export class UsersService {
   }
 
   getUsersById(id){
-    return this.http.get(environment.Url +'/user/'+ id);
+    return this.http.get(environment.Url +'/user/profile/'+ id);
   }
 
 

@@ -17,23 +17,25 @@
       <span class="error ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.pattern">
         Please provide valid email id.
       </span>
-  <!-- <ion-item>
-    <ion-label>
-      <ion-input formControlName="file" type="file"></ion-input>
-    </ion-label>
-  </ion-item> -->
-  
-      
       <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
-        <ion-label position="floating">password</ion-label>
-        <ion-input maxlength="10" formControlName="password" type="password" required></ion-input>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input maxlength="10" formControlName="fName" type="text" required></ion-input>
       </ion-item>
-      <span class="error ion-padding" *ngIf="isSubmitted && errorControl.mobile.errors?.required">
-        Mobile number is required.
-      </span>
-      <span class="error ion-padding" *ngIf="isSubmitted && errorControl.mobile.errors?.pattern">
-        Only numerical values allowed.
-      </span>
+
+      <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+        <ion-label position="floating">Contact Number</ion-label>
+        <ion-input maxlength="10" formControlName="contactNumber" type="number" required></ion-input>
+      </ion-item>
+      <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+        <ion-label position="floating">Coupon Code</ion-label>
+        <ion-input maxlength="10" formControlName="couponCode" type="text" required></ion-input>
+      </ion-item>
+
+      <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+        <ion-label position="floating">Wallet Balance</ion-label>
+        <ion-input maxlength="10" formControlName="walletCashbackAvailable" type="number" required></ion-input>
+      </ion-item>
+      
       <ion-row>
         <ion-col>
           <ion-button type="submit" color="danger" expand="block">Submit</ion-button>

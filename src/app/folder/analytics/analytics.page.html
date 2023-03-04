@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Analytics Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-grid>
+  <ion-row>
+    <ion-col size="3">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>Monthly Earnings</ion-card-subtitle>
+          <ion-card-title>{{monthlyEarning | currency:"INR" || "..."}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col size="3">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>Total Earnings</ion-card-subtitle>
+          <ion-card-title> {{totalEarning | currency:"INR" || "..."}} </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col size="3">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>Users</ion-card-subtitle>
+          <ion-card-title>{{userCount}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col size="3">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>Delivery Boys</ion-card-subtitle>
+          <ion-card-title> {{boyCount}} </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+      <ngx-charts-pie-chart
+      style="float: left; width: 200px;"
+  [view]="view"
+  [scheme]="colorScheme"
+  [results]="single"
+  [gradient]="gradient"
+  [legend]="showLegend"
+  [legendPosition]="legendPosition"
+  [labels]="showLabels"
+  [doughnut]="isDoughnut"
+ 
+  >
+</ngx-charts-pie-chart>
+
+
+<ngx-charts-bar-vertical
+style="float: right;"
+[view]="viewbar"
+[results]="singlebar"
+[gradient]="gradient"
+[xAxis]="showXAxis"
+[yAxis]="showYAxis"
+[legend]="showLegend"
+[showXAxisLabel]="showXAxisLabel"
+[showYAxisLabel]="showYAxisLabel"
+[xAxisLabel]="xAxisLabel"
+[yAxisLabel]="yAxisLabel"
+(select)="onSelect($event)">
+</ngx-charts-bar-vertical>
+
+
+
+
+</ion-content>

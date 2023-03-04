@@ -4,18 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { UsersPageRoutingModule } from './users-routing.module';
+import { SendNotifyPageRoutingModule } from './send-notify-routing.module';
 
-import { UsersPage } from './users.page';
+import { SendNotifyPage } from './send-notify.page';
 
 @NgModule({
   imports: [
     CommonModule,
+    IonicModule,
     FormsModule,
     ReactiveFormsModule,
-    IonicModule,
-    UsersPageRoutingModule
+    SendNotifyPageRoutingModule
   ],
-  declarations: [UsersPage]
+  declarations: [SendNotifyPage]
 })
-export class UsersPageModule {}
+export class SendNotifyPageModule {}

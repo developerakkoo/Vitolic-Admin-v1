@@ -75,7 +75,11 @@ const routes: Routes = [
   {
     path: 'issues',
     loadChildren: () => import('./issues/issues.module').then( m => m.IssuesPageModule)
+  },  {
+    path: 'analytics',
+    loadChildren: () => import('./analytics/analytics.module').then( m => m.AnalyticsPageModule)
   },
+
 
   // {
   //   path: 'refund',

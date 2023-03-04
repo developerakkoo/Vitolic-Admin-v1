@@ -10,6 +10,9 @@ import { HttpClientModule  } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { NgChartsModule } from 'ng2-charts';
 const firebaseConfig = {
   apiKey: "AIzaSyBk8Wgebp4KGgyJe9FZOptQjzUePcZzgEA",
   authDomain: "vitolic-422e9.firebaseapp.com",
@@ -22,9 +25,12 @@ const firebaseConfig = {
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+    NgChartsModule,
+    BrowserAnimationsModule,
      HttpClientModule,AngularFireModule.initializeApp(firebaseConfig),
      AngularFireAuthModule, AngularFireDatabaseModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Send Notification</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-grid >
+  <ion-row>
+    <ion-col size="6">
+      <form [formGroup]="notifyForm" (ngSubmit)="onSubmit()">
+        <ion-item>
+          <ion-label position="floating">Title <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required formControlName="title" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Message <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required formControlName="message" type="text"></ion-input>
+        </ion-item>
+       
+        <ion-button block color="primary" type="submit" [disabled]="notifyForm.invalid">
+          Send
+        </ion-button>
+      </form>
+    </ion-col>
+    <ion-col size="6"></ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>
