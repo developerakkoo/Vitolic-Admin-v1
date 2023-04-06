@@ -30,6 +30,10 @@ export class OrderPage implements OnInit {
     this.getAllCart();
   }
 
+  onOpenOrderPage(id){
+    this.router.navigate(['folder', 'order', 'order-details', id])
+  }
+
   async  getAllCart(){
     let loading = await this.loadingController.create({
       message:"Loading products...",

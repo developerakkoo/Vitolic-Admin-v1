@@ -7,7 +7,7 @@
 
 <ion-content>
 
-<ion-segment value="all" (ionChange)="segmentChanged($event)">
+<!-- <ion-segment value="all" (ionChange)="segmentChanged($event)">
   <ion-segment-button value="all">
     <ion-label>All  </ion-label> 
   </ion-segment-button>
@@ -17,46 +17,44 @@
   <ion-segment-button value="terminated">
     <ion-label>Terminated</ion-label>
   </ion-segment-button>
-</ion-segment>
+</ion-segment> -->
 <ion-searchbar placeholder="Order Id" [(ngModel)]="orderFilter.orderId" inputmode="decimal" type="decimal"></ion-searchbar>
-<!-- <ion-item>
-  <ion-chip color="primary" mode="ios" outline="true">
-    <ion-label>Daily</ion-label>
-  </ion-chip>
-  <ion-chip color="secondary" mode="ios" outline="true">
-    <ion-label>Alternate</ion-label>
-  </ion-chip>
-  <ion-chip color="tertiary" mode="ios" outline="true">
-    <ion-label>Custom</ion-label>
-  </ion-chip> 
-   <ion-chip color="dark" mode="ios" outline="true">
-    <ion-label>One time</ion-label>
-  </ion-chip>
-</ion-item> -->
-  <ion-grid >
-    <ion-row>
-      <ion-col>
-        <ion-list>
-      
-          <ion-item *ngFor="let cart of orders |  filterBy: orderFilter" detail>
-            <ion-avatar slot="start">
-              <img [src]="cart?.products[0]?.imageUrl" />
-            </ion-avatar>
-            <ion-label>
-              <p>Order Id: {{cart?.orderId}}</p>
-              <p>Order Total: {{cart?.total | currency:"INR"}}</p>
-              <p>Frequency: {{cart?.type}}</p>
-            </ion-label>
-          </ion-item>
+<div class="w3-container">
 
-          <ion-item  *ngIf="(orders | filterBy:orderFilter).length === 0">
-            <ion-label>No Orders</ion-label>
-          </ion-item>
-          
-        </ion-list>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <table class="w3-table-all w3-hoverable" >
+    <thead>
+      <tr class="w3-light-grey" >
+        <th>OrderId</th>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Total</th>
+        <th>Quantity</th>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone no</th>
+        <th>Address</th>
+        <th>Order Days</th>
+
+      </tr>
+    </thead>
+    <tr *ngFor="let cart of orders |  filterBy: orderFilter">
+      <td>{{cart?.orderId}}</td>
+      <td> <ion-img style="height: 50px; width: auto;" [src]="cart?.products[0]?.imageUrl"></ion-img> </td>
+      <td> {{cart?.products[0]?.title}} </td>
+      <td>{{cart?.total | currency:"INR"}}</td>
+      <td>{{cart?.products[0]?.amount}}</td>
+      <td>{{cart?.type}}</td>
+      <td>{{cart?.userId?.fName}}</td>
+      <td>{{cart?.userId?.email}}</td>
+      <td>{{cart?.userId?.contactNumber}}</td>
+      <td>{{cart?.address?.addLine1}}, {{cart?.address?.addLine2}}, {{cart?.address?.city}} {{cart?.pincode}}.</td>
+      <td> {{cart?.orderDays.length}} </td>
+    </tr>
+    
+  </table>
+</div>
+
 
 </ion-content>
 

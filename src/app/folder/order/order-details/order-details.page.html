@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Order Details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="folder/order"></ion-back-button>
+    </ion-buttons>
+    <ion-badge class="ion-margin-end" slot="end" color="secondary" mode="ios"> {{cart?.type}} </ion-badge>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3">
+       <h3>Order Details</h3>
+        <ion-item *ngFor="let p of product" lines="none">
+          <ion-thumbnail>
+            <img [src]="p.imageUrl" />
+          </ion-thumbnail>
+          <ion-label> 
+          <p> <strong>Title</strong> {{p?.title}} </p>  
+          <p> <strong>Price</strong> {{p?.price | currency:"INR"}} </p>  
+          <p> <strong>Quantity</strong> {{p?.amount }} {{p?.units}} </p>  
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size="5" >
+        <h3>User Details</h3>
+        <ion-item lines="none">
+          <ion-label>
+            <p> <strong>Full Name</strong> {{user?.fName}} </p>  
+            <p> <strong>Contact Number</strong> {{user?.contactNumber}} </p>  
+            <p> <strong>Email</strong> {{user?.email}} </p>  
+            <p> <strong>Address</strong> {{cart?.address?.addLine1}}, {{cart?.address?.addLine2}}, {{cart?.address?.city}} {{cart?.pincode}}. </p>  
+            
+
+
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

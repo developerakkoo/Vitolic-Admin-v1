@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { SubscriptionPageRoutingModule } from './subscription-routing.module';
 
 import { SubscriptionPage } from './subscription.page';
+import { SubDetailsPipe } from './sub-details.pipe';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { SubscriptionPage } from './subscription.page';
     IonicModule,
     SubscriptionPageRoutingModule
   ],
-  declarations: [SubscriptionPage]
+  declarations: [SubscriptionPage, SubDetailsPipe]
 })
 export class SubscriptionPageModule {}

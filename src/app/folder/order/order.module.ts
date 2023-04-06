@@ -8,6 +8,7 @@ import { OrderPageRoutingModule } from './order-routing.module';
 
 import { OrderPage } from './order.page';
 import { FilterPipeModule } from 'ngx-filter-pipe';
+import { OrderDetailsPipe } from './order-details.pipe';
 @NgModule({
   imports: [
     CommonModule,
@@ -16,6 +17,6 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
     FilterPipeModule,
     OrderPageRoutingModule
   ],
-  declarations: [OrderPage]
+  declarations: [OrderPage, OrderDetailsPipe]
 })
 export class OrderPageModule {}

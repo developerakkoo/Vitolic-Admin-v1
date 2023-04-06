@@ -157,7 +157,7 @@ export class AnalyticsPage implements OnInit {
     this.monthlyEarningSub = this.http.get(environment.Url +'/dashboard/sortearnings')
     .subscribe((earning) =>{
       console.log(earning['result'][0]);
-      this.monthlyEarning = earning['result'][0]['earnings'];
+      this.monthlyEarning = earning['result'][0]['total'];
       
     }, (error) =>{
       console.log(error);

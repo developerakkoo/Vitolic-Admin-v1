@@ -15,7 +15,11 @@ const routes: Routes = [
   {
     path: 'add-subscription',
     loadChildren: () => import('./add-subscription/add-subscription.module').then( m => m.AddSubscriptionPageModule)
+  },  {
+    path: 'sub-details',
+    loadChildren: () => import('./sub-details/sub-details.module').then( m => m.SubDetailsPageModule)
   }
+
 ];
 
 @NgModule({

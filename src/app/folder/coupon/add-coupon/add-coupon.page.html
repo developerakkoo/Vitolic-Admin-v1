@@ -18,6 +18,28 @@
     <ion-input type="number" [(ngModel)]="maxAmuont"></ion-input>
   </ion-item>
 
+  <ion-list>
+    <ion-radio-group (ionChange)="isUserEvent($event)">
+      <ion-list-header>
+        <ion-label>For Specific User</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Yes</ion-label>
+        <ion-radio value="yes"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>No</ion-label>
+        <ion-radio value="no"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+  <ion-item *ngIf="isUser">
+    <ion-label>Users</ion-label>
+    <ion-select (ionChange)="userSelectEvent($event)"  multiple="false" placeholder="Select user">
+      <ion-select-option *ngFor="let user of users" [value]="user._id">{{user.fName}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
   <ion-button (click)="submitForm()" expand="block">
     Create
   </ion-button>

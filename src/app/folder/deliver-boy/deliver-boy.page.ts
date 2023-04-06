@@ -31,18 +31,15 @@ export class DeliverBoyPage implements OnInit {
   }
 
   async getAllDeliver(){
+    
     let loading = await this.loadingController.create({
       message:"Loading Delivery Boy...",
       spinner:"lines"
     })
-  
-  
-  
-  
-  
     await loading.present();
     this.getDeliverBoySub = this.DeliverSer.getAllDeliver()
     .subscribe(async(Deliver:any) =>{
+      
       console.log(Deliver);
       this.Delivers = Deliver['boy'];
       await loading.dismiss();

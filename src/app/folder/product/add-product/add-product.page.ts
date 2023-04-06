@@ -28,13 +28,16 @@ export class AddProductPage implements OnInit {
 
   ngOnInit() {
     this.ionicForm = this.formBuilder.group({
-      title: ['', [Validators.required, Validators.minLength(2)]],
-      category: ['', [Validators.required]],
-      file: ['', [Validators.required, ] ],
-      discountedPrice:['',[Validators.required]],
-      Price:['',[Validators.required]],
-      units :['',[Validators.required]],
-      Stock :['',[Validators.required]]
+      title: [, [Validators.required, Validators.minLength(2)]],
+      category: [, [Validators.required]],
+      file: [, [Validators.required, ] ],
+      discountedPrice:[,[Validators.required]],
+      Price:[,[Validators.required]],
+      units :[,[Validators.required]],
+      Stock :[,[Validators.required]],
+      d1 :[,[Validators.required, Validators.min(20)]],
+      d2 :[,[Validators.required, Validators.min(20)]],
+      d3 :[,[Validators.required, Validators.min(20)]],
     })
   }
   get errorControl() {
@@ -56,6 +59,8 @@ export class AddProductPage implements OnInit {
     
     await loading.present();
   }
+
+
   submitForm() {
    
       console.log(this.ionicForm.value.title)
@@ -70,6 +75,9 @@ export class AddProductPage implements OnInit {
     formdata.append("price", this.ionicForm.value.Price);
     formdata.append("units", this.ionicForm.value.units);
     formdata.append("stock", this.ionicForm.value.Stock);
+    formdata.append("descOne", this.ionicForm.value.d1);
+    formdata.append("descTwo", this.ionicForm.value.d2);
+    formdata.append("descThree", this.ionicForm.value.d3);
     formdata.append("inStock", "true");
     formdata.append("file", this.fileToUpload, this.fileToUpload.name);
 

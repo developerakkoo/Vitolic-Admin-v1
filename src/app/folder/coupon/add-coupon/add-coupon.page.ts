@@ -12,10 +12,14 @@ import { environment } from 'src/environments/environment';
 })
 export class AddCouponPage implements OnInit {
 
+  users:any[];
   offer;
   code;
   maxAmuont:number;
+  userId:string;
+  isUser: Boolean;
   createCouponSub: Subscription;
+  getUsersSub: Subscription;
 
   constructor(private http: HttpClient,
               private router: Router,
@@ -23,14 +27,40 @@ export class AddCouponPage implements OnInit {
               private toastController: ToastController) { }
 
   ngOnInit() {
-    
+    this.getUsers();
   }
 
 
   ionViewDidLeave(){
     this.createCouponSub.unsubscribe();
   }
+  isUserEvent(ev){
+    console.log(ev.detail.value);
+    if(ev.detail.value == "yes"){
+      this.isUser = true;
+    }
+    if(ev.detail.value == "no"){
+      this.isUser = false;
+    }
+    
+  }
+
+  userSelectEvent(ev){
+    console.log(ev.detail.value);
+    this.userId = ev.detail.value;
+    
+  }
  
+  getUsers(){
+    this.getUsersSub = this.http.get(environment.Url +'/user/profiles').subscribe((users) =>{
+      console.log(users);
+      this.users = users['users'];
+      
+    }, (error) =>{
+      console.log(error);
+      
+    })
+  }
   async submitForm() {
     let loading = await this.loadingController.create({
       message: "Creating Coupon...",
@@ -41,7 +71,9 @@ export class AddCouponPage implements OnInit {
     let body = {
       offer: this.offer,
       promoCode: this.code,
-      maxAmount: this.maxAmuont
+      maxAmount: this.maxAmuont,
+      userId: this.userId || "",
+      isUser: this.isUser
     }
 
     console.log(body);

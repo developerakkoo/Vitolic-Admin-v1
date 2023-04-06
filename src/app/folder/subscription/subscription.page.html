@@ -3,23 +3,47 @@
     <ion-title>Subscription</ion-title>
     <ion-badge slot="end" color="tertiary" mode="ios">Total Subscription  {{subscription.length}} </ion-badge>
   </ion-toolbar>
-  <ion-segment value="DAILY" (ionChange)="segmentChanged($event)">
-    <ion-segment-button value="DAILY">
-      <ion-label>Daily</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="ALTERNATE">
-      <ion-label>Alternate</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="CUSTOM">
-      <ion-label>Custom</ion-label>
-    </ion-segment-button>
-  </ion-segment>
+
 </ion-header>
 
 <ion-content>
+  <div class="w3-container">
 
+    <table class="w3-table-all w3-hoverable" >
+      <thead>
+        <tr class="w3-light-grey" >
+          <th>OrderId</th>
+          <th>Invoice No</th>
+          <th>Product Image</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Days Remaining</th>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone no</th>
+          <th>Address</th>
+  
+        </tr>
+      </thead>
+      <tr *ngFor="let subscript of subscription">
+        <td>{{subscript?.cartId?.orderId}}</td>
+        <td>{{subscript?.billId?.invoiceNumber}}</td>
+        <td> <ion-img style="height: 50px; width: auto;" [src]="subscript?.cartId?.products[0]?.imageUrl"></ion-img> </td>
+        <td> {{subscript?.startDate}} </td>
+        <td>{{subscript?.endDate}}</td>
+        <td>{{subscript?.daysRemaining}}</td>
+        <td>{{subscript?.deliveryFrequency}}</td>
+        <td>{{subscript?.userId?.fName}}</td>
+        <td>{{subscript?.userId?.email}}</td>
+        <td>{{subscript?.userId?.contactNumber}}</td>
+        <td>{{subscript?.address?.addLine1}}, {{subscript?.address?.addLine2}}, {{subscript?.address?.city}} {{subscript?.pincode}}.</td>
+      </tr>
+      
+    </table>
+  </div>
 
-  <ion-grid >
+  <!-- <ion-grid >
     <ion-row>
       <ion-col sizeLg="6" offset="3">
         <ion-list>
@@ -35,7 +59,7 @@
         </ion-list>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
 
 </ion-content>
 

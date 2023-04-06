@@ -18,10 +18,10 @@ export class EditDeliverBoyPage implements OnInit {
 
   ngOnInit() {
     this.ionicForm = this.formBuilder.group({
-      contactNumber: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       fullName: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      // password: ['',[Validators.required]]
+      email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      contactNumber: ['', [Validators.required, Validators.minLength(2)]],
+      password: ['',[Validators.required]]
       // file:['',Validators.required]
 
     })

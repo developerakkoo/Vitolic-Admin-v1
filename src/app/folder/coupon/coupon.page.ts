@@ -15,6 +15,7 @@ export class CouponPage implements OnInit {
   coupons:any[] = [];
 
   getCouponSub: Subscription;
+  getUsersSub: Subscription;
   deletePromosub: Subscription;
 
   constructor(private router: Router,
@@ -30,7 +31,6 @@ export class CouponPage implements OnInit {
 
   ionViewDidLeave(){
     this.getCouponSub.unsubscribe();
-    this.deletePromosub.unsubscribe();
   }
   openAddCouponPage(){
     this.router.navigate(['folder','coupon', 'add-coupon']);
@@ -45,6 +45,8 @@ export class CouponPage implements OnInit {
                 
               })
   }
+
+ 
  async getCoupons(){
   let loading = await this.loadingController.create({
     message: "Getting coupons..",

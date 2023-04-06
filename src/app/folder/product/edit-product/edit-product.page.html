@@ -14,7 +14,7 @@
         <ion-col size="6" offset="3">
           <div class="ion-padding Pincode_Form">
             <img [src]="imageUrl" alt="">
-            <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
+            <form [formGroup]="ionicForm" (ngSubmit)="submitForm()">
               <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
                 <ion-label position="floating">title
                 </ion-label>
@@ -71,10 +71,25 @@
               <span class="error ion-padding" *ngIf="isSubmitted && errorControl.name.errors?.minlength">
                file should be min 2 chars long.
               </span>
+
+              <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+                <ion-label position="floating">Description One </ion-label>
+                <ion-input formControlName="d1" type="text" required></ion-input>
+              </ion-item>
+
+              <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+                <ion-label position="floating">Description Two</ion-label>
+                <ion-input formControlName="d2" type="text" required></ion-input>
+              </ion-item>
+
+              <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+                <ion-label position="floating">Description Three</ion-label>
+                <ion-input formControlName="d3" type="text" required></ion-input>
+              </ion-item>
             
               <ion-row>
                 <ion-col>
-                  <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
+                  <ion-button  type="submit" color="danger" expand="block">Submit</ion-button>
                 </ion-col>
               </ion-row>
             </form>

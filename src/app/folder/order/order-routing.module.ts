@@ -11,7 +11,12 @@ const routes: Routes = [
   {
     path: 'edit-order/:id',
     loadChildren: () => import('./edit-order/edit-order.module').then( m => m.EditOrderPageModule)
+  },
+  {
+    path: 'order-details/:id',
+    loadChildren: () => import('./order-details/order-details.module').then( m => m.OrderDetailsPageModule)
   }
+
 ];
 
 @NgModule({

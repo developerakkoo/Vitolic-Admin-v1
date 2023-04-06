@@ -43,7 +43,10 @@ export class EditProductPage implements OnInit {
       discountedPrice: ['', [Validators.required]],
       Price: ['', [Validators.required]],
       units: ['', [Validators.required]],
-      Stock: ['', [Validators.required]]
+      Stock: ['', [Validators.required]],
+      d1 :[,[Validators.required, Validators.min(20)]],
+      d2 :[,[Validators.required, Validators.min(20)]],
+      d3 :[,[Validators.required, Validators.min(20)]],
     })
   }
   get errorControl() {
@@ -79,7 +82,13 @@ export class EditProductPage implements OnInit {
         let units = product['products']['units'];
         this.imageUrl = product['products']['imageUrl'];
 
-        this.ionicForm.setValue({title: title , Price: price, discountedPrice: discountedPrice, category: category,Stock: stock, units: units, file: ""})
+        let d1 = product['products']['descriptionOne']
+        let d2 = product['products']['descriptionTwo']
+        let d3 = product['products']['descriptionThree']
+
+        this.ionicForm
+        .setValue({title: title , Price: price, discountedPrice: discountedPrice, 
+          category: category,Stock: stock, units: units, file: "", d1: d1, d2: d2, d3:d3})
         await loading.dismiss();
       }, async (error) => {
         console.log(error);
@@ -98,7 +107,7 @@ export class EditProductPage implements OnInit {
   }
   submitForm() {
 
-    console.log(this.ionicForm.value.title)
+    console.log(this.ionicForm.value)
 
     this.presentLoading("Updating product...");
 
@@ -112,6 +121,9 @@ export class EditProductPage implements OnInit {
     formdata.append("units", this.ionicForm.value.units);
     formdata.append("stock", this.ionicForm.value.Stock);
     formdata.append("inStock", "true");
+    formdata.append("descOne", this.ionicForm.value.d1);
+    formdata.append("descTwo", this.ionicForm.value.d2);
+    formdata.append("descThree", this.ionicForm.value.d3);
     formdata.append("file", this.fileToUpload, this.fileToUpload.name);
 
 
@@ -136,6 +148,9 @@ export class EditProductPage implements OnInit {
     formdata.append("units", this.ionicForm.value.units);
     formdata.append("stock", this.ionicForm.value.Stock);
     formdata.append("inStock", "true");
+    formdata.append("descOne", this.ionicForm.value.d1);
+    formdata.append("descTwo", this.ionicForm.value.d2);
+    formdata.append("descThree", this.ionicForm.value.d3);
     formdata.append("imageUrl", this.imageUrl);
 
 
