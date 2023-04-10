@@ -23,6 +23,7 @@ export class EditProductPage implements OnInit {
   item;
   isFileSelected: boolean = false;
 
+  hasDiscountedPrice: boolean;
 
   getProductSub: Subscription;
   constructor(public formBuilder: FormBuilder,
@@ -81,6 +82,7 @@ export class EditProductPage implements OnInit {
         let stock = product['products']['stock'];
         let units = product['products']['units'];
         this.imageUrl = product['products']['imageUrl'];
+        this.hasDiscountedPrice = product['products']['hasDiscountedPrice'];
 
         let d1 = product['products']['descriptionOne']
         let d2 = product['products']['descriptionTwo']

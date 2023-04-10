@@ -30,7 +30,7 @@
               <span class="error ion-padding" *ngIf="isSubmitted && errorControl.Price.errors?.required">
                 Price is required.
               </span>
-              <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+              <ion-item *ngIf="hasDiscountedPrice" class="ion-margin-bottom Input_num" expand="block" fill="outline">
                 <ion-label position="floating">Discounted Price</ion-label>
                 <ion-input formControlName="discountedPrice" type="DiscountedPrice"></ion-input>
               </ion-item>

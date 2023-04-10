@@ -90,6 +90,10 @@ const routes: Routes = [
     path: 'send-notify',
     loadChildren: () => import('./send-notify/send-notify.module').then( m => m.SendNotifyPageModule)
   },
+  {
+    path: 'sub-admin',
+    loadChildren: () => import('./sub-admin/sub-admin.module').then( m => m.SubAdminPageModule)
+  },
 
 
   

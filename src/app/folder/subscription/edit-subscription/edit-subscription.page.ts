@@ -42,9 +42,9 @@ export class EditSubscriptionPage implements OnInit {
   
   this.Subs.getSubscriptionById(this._subscriptid).subscribe(async (subscript) =>{
     console.log(subscript);
-    this.ionicForm.setValue({emailId: subscript['subscription']['emailId'],address: subscript['subscription']['address'],milk:subscript['subscription']['milk'],phone: subscript['subscription']['phone'],deliveryFrequency: subscript['subscription']['deliveryFrequency'],
-    invoiceNumber:subscript['subscription']['invoiceNumber']
-  });
+  //   this.ionicForm.setValue({emailId: subscript['subscription']['emailId'],address: subscript['subscription']['address'],milk:subscript['subscription']['milk'],phone: subscript['subscription']['phone'],deliveryFrequency: subscript['subscription']['deliveryFrequency'],
+  //   invoiceNumber:subscript['subscription']['invoiceNumber']
+  // });
     await loading.dismiss();
   
   },async (error) =>{

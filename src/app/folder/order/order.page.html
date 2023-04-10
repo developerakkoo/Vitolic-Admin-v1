@@ -35,6 +35,7 @@
         <th>Phone no</th>
         <th>Address</th>
         <th>Order Days</th>
+        <th>Action</th>
 
       </tr>
     </thead>
@@ -50,6 +51,15 @@
       <td>{{cart?.userId?.contactNumber}}</td>
       <td>{{cart?.address?.addLine1}}, {{cart?.address?.addLine2}}, {{cart?.address?.city}} {{cart?.pincode}}.</td>
       <td> {{cart?.orderDays.length}} </td>
+      <td> 
+
+        <ion-button fill="clear" color="success" (click)="onOpenOrderEdit(cart._id)">
+          <ion-icon slot="icon-only" name="pencil"></ion-icon>
+        </ion-button>
+        <!-- <ion-button fill="clear" color="danger" (click)="onDeleteOrder(cart)">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-button> -->
+      </td>
     </tr>
     
   </table>

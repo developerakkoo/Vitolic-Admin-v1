@@ -10,7 +10,8 @@ export class CityService {
   constructor(private http: HttpClient) { }
 
 
-    addCity(){
+    addCity(body){
+      return this.http.post(environment.Url +'/pincode', body);
 
   }
 

@@ -19,19 +19,23 @@ export class AddProductPage implements OnInit {
 
   item;
  
+  hasDiscountedPrice: boolean = false;
   
   constructor(public formBuilder: FormBuilder,
               private http: HttpClient,
               private router: Router,
               private alertController: AlertController,
-              private loadingController: LoadingController) { }
+              private loadingController: LoadingController) {
+
+               }
 
   ngOnInit() {
-    this.ionicForm = this.formBuilder.group({
+    this.ionicForm = 
+    this.formBuilder.group({
       title: [, [Validators.required, Validators.minLength(2)]],
       category: [, [Validators.required]],
-      file: [, [Validators.required, ] ],
-      discountedPrice:[,[Validators.required]],
+      file: [, [Validators.required, ]],
+      discountedPrice:[,],
       Price:[,[Validators.required]],
       units :[,[Validators.required]],
       Stock :[,[Validators.required]],
@@ -40,8 +44,18 @@ export class AddProductPage implements OnInit {
       d3 :[,[Validators.required, Validators.min(20)]],
     })
   }
+
+
   get errorControl() {
     return this.ionicForm.controls;
+  }
+
+  DiscountPriceEvent(ev:any){
+    console.log(ev);
+    this.hasDiscountedPrice = ev.detail.checked;
+    console.log(this.hasDiscountedPrice);
+    
+    
   }
 
   fileEvent(ev){
@@ -67,11 +81,13 @@ export class AddProductPage implements OnInit {
 
       this.presentLoading("Add new product...");
       
-    let formdata = new FormData();
+    if(this.hasDiscountedPrice){
+      let formdata = new FormData();
 
     formdata.append("title", this.ionicForm.value.title);
     formdata.append("category", this.ionicForm.value.category);
     formdata.append("discountedPrice", this.ionicForm.value.discountedPrice);
+    formdata.append("hasDiscountedPrice", "true");
     formdata.append("price", this.ionicForm.value.Price);
     formdata.append("units", this.ionicForm.value.units);
     formdata.append("stock", this.ionicForm.value.Stock);
@@ -80,8 +96,6 @@ export class AddProductPage implements OnInit {
     formdata.append("descThree", this.ionicForm.value.d3);
     formdata.append("inStock", "true");
     formdata.append("file", this.fileToUpload, this.fileToUpload.name);
-
-
     this.http.post(environment.Url + '/products', formdata)
     .subscribe((product) =>{
       console.log(product);
@@ -92,6 +106,37 @@ export class AddProductPage implements OnInit {
     },async (err)=>{
       this.loadingController.dismiss();
     })
+    }
+
+    else if(!this.hasDiscountedPrice){
+      let formdata = new FormData();
+
+      formdata.append("title", this.ionicForm.value.title);
+      formdata.append("category", this.ionicForm.value.category);
+      formdata.append("price", this.ionicForm.value.Price);
+      formdata.append("hasDiscountedPrice", "false");
+
+      formdata.append("units", this.ionicForm.value.units);
+      formdata.append("stock", this.ionicForm.value.Stock);
+      formdata.append("descOne", this.ionicForm.value.d1);
+      formdata.append("descTwo", this.ionicForm.value.d2);
+      formdata.append("descThree", this.ionicForm.value.d3);
+      formdata.append("inStock", "true");
+      formdata.append("file", this.fileToUpload, this.fileToUpload.name);
+      this.http.post(environment.Url + '/products', formdata)
+      
+      .subscribe((product) =>{
+        console.log(product);
+        
+        this.loadingController.dismiss();
+        this.router.navigate(['folder','product']);
+        
+      },async (err)=>{
+        this.loadingController.dismiss();
+      })
+    }
+
+   
     
 
 

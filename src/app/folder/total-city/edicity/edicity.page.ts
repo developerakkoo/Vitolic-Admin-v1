@@ -17,8 +17,17 @@ export class EdicityPage implements OnInit {
 
   ngOnInit() {
     this.ionicForm = this.formBuilder.group({
-      areaName: ['', [Validators.required, Validators.minLength(2)]],
-      pincode: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      pincode: ['', [Validators.required, Validators.minLength(2)]],
+      areaName: ['', [Validators.required]],
+      deliveryState: [, [Validators.required]],
+      divisionName: [, [Validators.required]],
+      region: [, [Validators.required]],
+      taluka: [, [Validators.required]],
+      district: [, [Validators.required]],
+      state: [, [Validators.required]],
+      center: [, [Validators.required]],
+      route: [, [Validators.required]],
+      deliveryPerson: [, [Validators.required]],
       // mobile: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       // file:['',Validators.required]
 
@@ -37,7 +46,11 @@ export class EdicityPage implements OnInit {
   
   this.totalcity.deleteCity(this._totalcityId).subscribe(async (pincode) =>{
     console.log(pincode);
-    this.ionicForm.setValue({areaName: pincode['pincode']['areaName'] ,pincode: pincode['pincode']['pincode']});
+  //   this.ionicForm.setValue({areaName: pincode['pincode']['areaName'] ,pincode: pincode['pincode']['pincode']
+  // , deliveryState: pincode['pincode']['deliveryState'], division: pincode['pincode']['division'],
+  //   region: pincode['pincode']['region'], taluka: pincode['pincode']['taluka'], district: pincode['pincode']['district'],
+  //   state: pincode['pincode']['state'], center: pincode['pincode']['center'], route: pincode['pincode']['route'],
+  //     deliveryPerson: pincode['pincode']['deliveryPerson']});
     await loading.dismiss();
   
   },async (error) =>{

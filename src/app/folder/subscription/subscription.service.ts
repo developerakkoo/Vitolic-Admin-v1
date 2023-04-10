@@ -16,8 +16,12 @@ export class SubscriptionService {
   editSubscription(){
 
   }
-  deleteSubscription(id){
-    return this.http.delete(environment.Url +'/subscription/'+id);
+  deleteSubscription(id, cartId, userId){
+    let body = {
+      userId: userId,
+      terminate: true
+    }
+    return this.http.put(environment.Url +'/subscription/terminate/'+id + "/" + cartId, body);
   }
 
   getSubscriptionById(id){

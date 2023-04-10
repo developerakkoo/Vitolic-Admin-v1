@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import { AlertController, LoadingController, MenuController, ToastController } from '@ionic/angular';
 import { AppComponent } from '../app.component';
 
 @Component({
@@ -20,12 +20,15 @@ export class AuthPage implements OnInit {
               private alertController: AlertController,
               private router: Router,
               private fb: FormBuilder,
+              private menuCtrl: MenuController,
               private toastController: ToastController)
                { 
                 this.loginForm = this.fb.group({
                   email:['', [Validators.required]],
                   password:['', [Validators.required]]
                 })
+
+                this.menuCtrl.enable(false);
                }
 
   ngOnInit() {

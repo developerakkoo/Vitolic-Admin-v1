@@ -23,6 +23,7 @@
           <th>Email</th>
           <th>Phone no</th>
           <th>Address</th>
+          <th>Action</th>
   
         </tr>
       </thead>
@@ -38,6 +39,14 @@
         <td>{{subscript?.userId?.email}}</td>
         <td>{{subscript?.userId?.contactNumber}}</td>
         <td>{{subscript?.address?.addLine1}}, {{subscript?.address?.addLine2}}, {{subscript?.address?.city}} {{subscript?.pincode}}.</td>
+        <td>
+          <!-- <ion-button fill="clear" color="success" (click)="openEditPage(subscript)">
+            <ion-icon slot="icon-only" name="pencil"></ion-icon>
+          </ion-button> -->
+          <ion-button fill="clear" color="danger" (click)="deletesubscriptClick(subscript._id, subscript?.cartId?._id, subscript?.userId?._id)">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-button>
+        </td>
       </tr>
       
     </table>

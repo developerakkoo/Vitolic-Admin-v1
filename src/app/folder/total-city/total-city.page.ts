@@ -18,6 +18,9 @@ export class TotalCityPage implements OnInit {
   ngOnInit() {
     this.getAllTotalCity();
   }
+  openAddCityPage(){
+    this.router.navigate(['folder', 'total-city', 'add-city']);
+  }
   openEditPage(TotalCity){
     console.log(TotalCity._id);
     this.router.navigate(['folder','total-city','edicity', TotalCity._id]);
@@ -30,14 +33,9 @@ export class TotalCityPage implements OnInit {
   }
   async  getAllTotalCity(){
     let loading = await this.loadingController.create({
-      message:"Loading products...",
-      spinner:"lines"
+      message:"Loading cities...",
     })
-  
-  
-  
-  
-  
+
     await loading.present();
     this.getTotalCitys = this.totalcity.getAllCity()
     .subscribe(async(city:any) =>{

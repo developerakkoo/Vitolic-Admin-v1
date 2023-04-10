@@ -1,42 +1,99 @@
-<ion-header>
+   <ion-header>
   <ion-toolbar>
-    <ion-title>add-city</ion-title>
+    <ion-title>Add City</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/folder/total-city"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <div class="ion-padding Pincode_Form">
-    <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
-      <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
-        <ion-label position="floating">Area Name
-        </ion-label>
-        <ion-input formControlName="areaName" type="text"></ion-input>
-      </ion-item>
-      <span class="error ion-padding" *ngIf="isSubmitted && errorControl.name.errors?.required">
-       Area Name is required.
-      </span>
+<ion-grid>
+  <ion-row>
+    <ion-col size="6" offset="3">
+      <div class="ion-padding Pincode_Form">
+        <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
+          <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+            <ion-label position="floating">Area Name
+            </ion-label>
+            <ion-input formControlName="areaName" type="text"></ion-input>
+          </ion-item>
+          <span class="error ion-padding" *ngIf="isSubmitted && errorControl.name.errors?.required">
+           Area Name is required.
+          </span>
+        
+          
+          
+          <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+            <ion-label position="floating">Pincode</ion-label>
+            <ion-input maxlength="6" formControlName="pincode" type="text" required></ion-input>
+          </ion-item>
+          <span class="error ion-padding" *ngIf="isSubmitted && errorControl.pincode.errors?.required">
+            pincode number is required.
+          </span>
+          <span class="error ion-padding" *ngIf="isSubmitted && errorControl.pincode.errors?.pattern">
+            Only numerical values allowed.
+          </span>
+          
     
-      
-      
-      <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
-        <ion-label position="floating">Pincode</ion-label>
-        <ion-input maxlength="6" formControlName="pincode" type="text" required></ion-input>
-      </ion-item>
-      <span class="error ion-padding" *ngIf="isSubmitted && errorControl.pincode.errors?.required">
-        pincode number is required.
-      </span>
-      <span class="error ion-padding" *ngIf="isSubmitted && errorControl.pincode.errors?.pattern">
-        Only numerical values allowed.
-      </span>
-      
-   
+          <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+            <ion-label position="floating">Division</ion-label>
+            <ion-input formControlName="divisionName" type="text" required></ion-input>
+          </ion-item>
+       
+          <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+            <ion-label position="floating">Region</ion-label>
+            <ion-input  formControlName="region" type="text" required></ion-input>
+          </ion-item>
     
-      <ion-row>
-        <ion-col>
-          <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
-        </ion-col>
-      </ion-row>
-    </form>
-    </div>
+          <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+            <ion-label position="floating">Taluka</ion-label>
+            <ion-input  formControlName="taluka" type="text" required></ion-input>
+          </ion-item>
+        
+    
+          <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+            <ion-label position="floating">District</ion-label>
+            <ion-input  formControlName="district" type="text" required></ion-input>
+          </ion-item>
+    
+          <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+            <ion-label position="floating">State</ion-label>
+            <ion-input  formControlName="state" type="text" required></ion-input>
+          </ion-item>
+    
+          <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+            <ion-label position="floating">Center</ion-label>
+            <ion-input  formControlName="center" type="text" required></ion-input>
+          </ion-item>
+    
+          <ion-item class="ion-margin-bottom Input_num" expand="block" fill="outline">
+            <ion-label position="floating">Route</ion-label>
+            <ion-input  formControlName="route" type="text" required></ion-input>
+          </ion-item>
+    
+          <ion-item>
+            <ion-label>Delivery State</ion-label>
+            <ion-select formControlName="deliveryState" value="deliver" multiple="false" placeholder="Select Delivery State">
+              <ion-select-option color="success" value="DELIVER">DELIVER</ion-select-option>
+              <ion-select-option color="danger" value="NONDELIVER">NON DELIVER</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Delivery Person</ion-label>
+            <ion-select formControlName="deliveryPerson" multiple="false" placeholder="Select Delivery Person">
+              <ion-select-option *ngFor="let boy of deliveryboy" [value]="boy._id">{{boy.fullName}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
+            </ion-col>
+          </ion-row>
+        </form>
+        </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 </ion-content>

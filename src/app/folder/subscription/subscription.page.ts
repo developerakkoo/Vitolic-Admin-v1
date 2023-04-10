@@ -61,15 +61,21 @@ export class SubscriptionPage implements OnInit {
       })
   }
 
-  deletesubscriptClick(id) {
-    this.Subs.deleteSubscription(id)
+  async deletesubscriptClick(id, cartId, userId) {
+    let loading = await this.loadingController.create({
+      message: "Loading Subscripstion...",
+      spinner: "lines"
+    })
+
+    await loading.present();
+    this.Subs.deleteSubscription(id, cartId, userId)
       .subscribe(async (subscription) => {
         console.log(subscription);
         this.getAllSubscripsti();
-
+        this.loadingController.dismiss();
       }, async (error) => {
         console.log(error);
-
+        this.loadingController.dismiss();
       })
   }
 

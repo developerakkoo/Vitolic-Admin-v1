@@ -1,0 +1,137 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Register Sub-Admin</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-grid>
+  <ion-row>
+    <ion-col sizeLg="6" offsetLg="3">
+      <form [formGroup]="from" (ngSubmit)="onSubmit()">
+        <ion-item>
+          <ion-label position="floating">E-Mail <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required formControlName="email" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Password <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required formControlName="password" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">City <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required formControlName="city" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Product Create Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isProductAdd"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Product Edit Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isProductEdit"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Product Delete Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isProductDelete"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Order Create Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isOrderAdd"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Order Edit Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isOrderEdit"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Order Delete Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isOrderDelete"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>User Create Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isUserAdd"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>User Edit Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isUserEdit"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>User Delete Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isUserDelete"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Boy Create Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isBoyAdd"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Boy Edit Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isBoyEdit"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Boy Delete Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isBoyDelete"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Promo Create Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isPromoAdd"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Promo Edit Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isPromoEdit"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Promo Delete Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isPromoDelete"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Banner Create Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isBannerAdd"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Banner Edit Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isBannerEdit"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Banner Delete Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isBannerDelete"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Subscription Create Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isSubscriptionAdd"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Subscription Edit Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isSubscriptionEdit"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Subscription Delete Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isSubscriptionDelete"></ion-checkbox>
+        </ion-item>
+
+
+        <ion-item>
+          <ion-label>City Create Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isCityAdd"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>City Edit Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isCityEdit"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>City Delete Access</ion-label>
+          <ion-checkbox slot="start" formControlName="isCityDelete"></ion-checkbox>
+        </ion-item>
+        <ion-button block color="primary" type="submit" [disabled]="from.invalid">
+          Register
+        </ion-button>
+      </form>
+    </ion-col>
+    <ion-col size="6"></ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

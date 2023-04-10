@@ -30,8 +30,16 @@ export class OrderPage implements OnInit {
     this.getAllCart();
   }
 
-  onOpenOrderPage(id){
+  onOpenOrderEdit(id){
     this.router.navigate(['folder', 'order', 'order-details', id])
+  }
+
+  onDeleteOrder(id){
+    console.log(id);
+    //Terminate the Subscription
+
+    // /subscription/terminate/subId/cartId PUT
+    
   }
 
   async  getAllCart(){

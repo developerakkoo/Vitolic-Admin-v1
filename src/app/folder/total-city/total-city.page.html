@@ -1,13 +1,18 @@
 <ion-header>
   <ion-toolbar >
     <ion-title>TotalCity</ion-title>
+    <ion-button color="light" (click)="openAddCityPage()" fill="clear" slot="end">
+      <ion-icon slot="icon-only" name="add"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content>
 
-
+  <ion-text color="secondary" class="ion-text-center" *ngIf="TotalCity.length <= 0"> 
+    <h6>No Cities Found!</h6>
+  </ion-text>
   <ion-grid >
     <ion-row>
       <ion-col sizeLg="10" offsetLg="1" sizeMd="12" sizeSm="12" sizeXs="12">
