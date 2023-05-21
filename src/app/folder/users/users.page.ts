@@ -28,6 +28,15 @@ export class UsersPage implements OnInit {
 
   }
 
+  openAddUserPage(){
+    this.router.navigate(['folder', 'users', 'add-user']);
+  }
+
+  openAddSubscriptionPage(user){
+    console.log(user);
+    this.router.navigate(['folder', 'users', 'list-products', user._id]);
+    
+  }
   IonViewDidLeave() {
     this.getUsersSub.unsubscribe();
   }

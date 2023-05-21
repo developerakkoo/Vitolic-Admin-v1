@@ -86,14 +86,22 @@ const routes: Routes = [
     canActivate: [AngularFireAuthGuard],
 
     data: { authGuardPipe: redirectLoggedInToItems },
-  },  {
+  },
+  {
     path: 'send-notify',
     loadChildren: () => import('./send-notify/send-notify.module').then( m => m.SendNotifyPageModule)
   },
   {
     path: 'sub-admin',
     loadChildren: () => import('./sub-admin/sub-admin.module').then( m => m.SubAdminPageModule)
+  },  {
+    path: 'custom',
+    loadChildren: () => import('./users/custom/custom.module').then( m => m.CustomPageModule)
   },
+
+
+
+ 
 
 
   

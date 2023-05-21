@@ -1,28 +1,39 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Users</ion-title>
+    <ion-title>User</ion-title>
+    <ion-button
+      (click)="openAddUserPage()"
+      color="light"
+      slot="end"
+      fill="clear"
+    >
+      <ion-icon slot="icon-only" name="add"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
-
-  <ion-grid >
+  <ion-grid>
     <ion-row>
-      <ion-col sizeLg="8" offsetLg="1" sizeMd="12" sizeSm="12" sizeXs="12">
+      <ion-col sizeLg="12" sizeMd="12" sizeSm="12" sizeXs="12">
         <ion-list>
           <ion-item *ngFor="let user of users">
             <ion-label>{{user.fName}}</ion-label>
             <ion-label> {{user.password}} </ion-label>
-       
+
             <ion-buttons slot="end">
               <ion-button (click)=" openEditPage(user)" color="success">
-                <!-- (click)="onClick()" -->
-               Edit
+                Edit
               </ion-button>
-              <ion-button (click)="sendNotification(user.firebaseToken)" color="tertiary" > 
+              <ion-button (click)=" openAddSubscriptionPage(user)" color="warning">
+                Add Subscription
+              </ion-button>
+              <ion-button
+                (click)="sendNotification(user.firebaseToken)"
+                color="tertiary"
+              >
                 <ion-icon slot="end" name="send"></ion-icon>
-               Send notification
+                Send notification
               </ion-button>
             </ion-buttons>
           </ion-item>
@@ -31,6 +42,4 @@
       <ion-col size="6"></ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>
-

@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   public appPages = [
     { title: 'Analytics', url: '/folder/analytics', icon: 'stats-chart' },
-    { title: 'Summary', url: '/folder/summary', icon: 'stats-chart' },
+    // { title: 'Summary', url: '/folder/summary', icon: 'stats-chart' },
     { title: 'Products', url: '/folder/product', icon: 'leaf' },
     { title: 'Orders', url: '/folder/order', icon: 'today' },
     { title: 'Users', url: '/folder/users', icon: 'person' },
@@ -19,8 +19,8 @@ export class AppComponent {
     { title: 'Subscription', url: '/folder/subscription', icon: 'cash' },
     { title: 'Total City', url: '/folder/total-city', icon: 'map' },
     { title: 'Sub Admin', url: '/sub-admin', icon: 'build' },
-    { title: 'Issues', url: '/folder/issues', icon: 'warning' },
-    { title: 'Privacy Policy', url: '/folder/policy', icon: 'document' },
+    // { title: 'Issues', url: '/folder/issues', icon: 'warning' },
+    // { title: 'Privacy Policy', url: '/folder/policy', icon: 'document' },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 

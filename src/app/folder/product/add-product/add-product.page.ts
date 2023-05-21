@@ -115,6 +115,7 @@ export class AddProductPage implements OnInit {
       formdata.append("category", this.ionicForm.value.category);
       formdata.append("price", this.ionicForm.value.Price);
       formdata.append("hasDiscountedPrice", "false");
+      formdata.append("discountedPrice", this.ionicForm.value.Price);
 
       formdata.append("units", this.ionicForm.value.units);
       formdata.append("stock", this.ionicForm.value.Stock);

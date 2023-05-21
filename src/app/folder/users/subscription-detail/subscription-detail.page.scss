@@ -1,0 +1,30 @@
+.qty-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffff;
+    margin-top: 10px;
+    
+    border-radius: 19px;
+    height: 33px;
+
+
+    ion-button {
+        --color:rgb(255, 255, 255);
+        font-size: 12px;
+        margin-left: 1px;
+        margin-right: 0px;
+        
+    }
+
+    ion-label {
+        color: black !important;
+        font-size: 22px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .logo-image {
+        box-shadow: 1px 5px 12px rgba($color: #6e6d6d, $alpha: 1) !important;
+    }
+    
+}

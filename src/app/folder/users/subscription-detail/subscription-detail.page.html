@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Subscription Detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-grid>
+  <ion-row>
+    <ion-col size="12">
+      <ion-item>
+        <ion-label>Type </ion-label>
+        <ion-select (ionChange)="switchEvent($event)" interface="action-sheet" value="Daily" cancelText="Cancel Choice">
+          <ion-select-option value="Daily">Daily</ion-select-option>
+          <ion-select-option value="Alternate">Alternate</ion-select-option>
+          <ion-select-option value="One time">One Time</ion-select-option>
+          <ion-select-option value="Custom">Custom</ion-select-option>
+    
+        </ion-select>
+    
+       
+      </ion-item>
+
+      <ion-item lines="full" *ngIf="!hideStartDate">
+        <ion-label>Start Date</ion-label>
+        <ion-datetime-button datetime="startdatetime"></ion-datetime-button>
+      </ion-item>
+    
+      <ion-modal [keepContentsMounted]="true"  *ngIf="!hideStartDate">
+        <ng-template>
+          <ion-datetime [min]="dateTillDisabled" #datetime
+          [value]="startDate" min="2022" max="2050" (ionChange)="dateChangedStart(datetime.value)" presentation="date" id="startdatetime"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+      <ion-item lines="full" *ngIf="!hideEndDate" >
+        <ion-label>End Date</ion-label>
+        <ion-datetime-button datetime="enddatetime"></ion-datetime-button>
+      </ion-item>
+    
+      <ion-modal [keepContentsMounted]="true"  *ngIf="!hideEndDate" >
+        <ng-template>
+          <ion-datetime [min]="dateTillDisabled" #datetime
+          [value]="endDate" min="2022" max="2050" (ionChange)="dateChangedEnd(datetime.value)" presentation="date" id="enddatetime"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+
+
+      <ion-item>
+        <ion-label>{{addressSelectText}}</ion-label>
+        <ion-button (click)="presentActionSheet()" slot="end">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <div class="cart-items" class="ion-margin-end">
+        <div class="item-info" mode="ios" *ngFor="let p of cart">
+
+          <div class="qty-selector" >
+            <ion-button fill="solid" (click)="decreaseCartItem(p)">-</ion-button>
+            <ion-label> {{p.amount}} </ion-label>
+            <ion-button fill="solid" (click)="increaseCartItem(p)">+</ion-button>
+          </div>
+        </div>
+  </div>
+
+      <ion-button *ngIf="!enableCustomButton" (click)="placeOrder()" expand="block">
+        Add Subscription
+      </ion-button>
+      <ion-button *ngIf="enableCustomButton" (click)="openCustomPage()" expand="block">
+        Add Custom Subscription
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

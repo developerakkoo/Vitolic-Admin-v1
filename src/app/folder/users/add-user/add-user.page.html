@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add User</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-grid>
+  <ion-row>
+    <ion-col sizeLg="6" offsetLg="2" sizeSm="12" sizeXs="12">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+    
+        <div>
+          <ion-list>
+          
+            <ion-item  expand="block">
+     
+              <ion-input type="text" formControlName="name" placeholder="Name"></ion-input>
+            </ion-item>
+           
+    
+            <ion-item  expand="block">
+      
+              <ion-input type="email" placeholder="Enter Email" formControlName="email"></ion-input>
+            </ion-item>
+    
+           
+         
+           
+              <ion-item  expand="block" >
+               
+                <ion-input type="tel" formControlName="mobnoctrl" 
+                  placeholder="Contact Number" class=""></ion-input>
+              </ion-item>
+             
+              <ion-button (click)="onSubmit()" [disabled]="form.invalid" expand="block" fill="clear" shape="round">
+                Create
+              </ion-button>
+ 
+          </ion-list>
+        </div>
+        </form>
+    </ion-col>
+    <ion-col size="6"></ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>
