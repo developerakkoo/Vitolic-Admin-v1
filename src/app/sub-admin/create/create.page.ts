@@ -1,6 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController, LoadingController } from '@ionic/angular';
+import { Subscription } from 'rxjs';
+import { HandlerService } from 'src/app/handler.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-create',
@@ -10,8 +14,13 @@ import { AlertController, LoadingController } from '@ionic/angular';
 export class CreatePage implements OnInit {
 
   from: FormGroup;
+
+  postSubAdminSub!: Subscription;
+
   constructor(private fb: FormBuilder,
               private loadingController: LoadingController,
+              private http: HttpClient,
+              private handler: HandlerService,
               private alertController: AlertController) {
     this.from = this.fb.group({
       email: [, [Validators.required, Validators.email]],
@@ -56,6 +65,11 @@ export class CreatePage implements OnInit {
   ngOnInit() {
   }
 
+  IonViewDidLeave(){
+    this.postSubAdminSub.unsubscribe();
+  }
+
+
   async presentLoading() {
     const loading = await this.loadingController.create({
       message: 'Registering please wait...',
@@ -72,8 +86,24 @@ export class CreatePage implements OnInit {
   
     await alert.present();
   }
-  onSubmit(){
+ async onSubmit(){
+  this.presentLoading();
     console.log(this.from.value);
+    this.postSubAdminSub = this.http.post(environment.Url +'/subadminsignup', this.from.value)
+    .subscribe({
+      next:(value:any) =>{
+        console.log(value);
+        this.loadingController.dismiss();
+        this.handler.presentToast("Sub Admin created successfully!", 2000, 'top');
+        
+      },
+      error:(error) =>{
+        console.log(error);
+        this.loadingController.dismiss();
+        this.handler.presentToast("Something Went Wrong!", 2000, 'top');
+        
+      }
+    })
     
   }
 

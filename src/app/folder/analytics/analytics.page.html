@@ -54,23 +54,14 @@
 </ion-grid>
 
 
-      <ngx-charts-pie-chart
-      style="float: left; width: 160px;"
-  [view]="view"
-  [scheme]="colorScheme"
-  [results]="single"
-  [gradient]="gradient"
-  [legend]="showLegend"
-  [legendPosition]="legendPosition"
-  [labels]="showLabels"
-  [doughnut]="isDoughnut"
- 
-  >
-</ngx-charts-pie-chart>
+<ion-grid class="ion-margin">
+  <ion-row>
+    <ion-col size="6">
+
 
 
 <ngx-charts-bar-vertical
-style="float: right;"
+
 [view]="viewbar"
 [results]="singlebar"
 [gradient]="gradient"
@@ -83,7 +74,25 @@ style="float: right;"
 [yAxisLabel]="yAxisLabel"
 (select)="onSelect($event)">
 </ngx-charts-bar-vertical>
+<ngx-charts-pie-chart
+     
+[view]="view"
+[scheme]="colorScheme"
+[results]="single"
+[gradient]="gradient"
+[legend]="showLegend"
+[legendPosition]="legendPosition"
+[labels]="showLabels"
+[doughnut]="isDoughnut"
 
+>
+</ngx-charts-pie-chart>
+    </ion-col>
+    <ion-col size="6">
+     
+    </ion-col>
+  </ion-row>
+</ion-grid>
 
 
 

@@ -51,6 +51,8 @@
           <ion-icon slot="icon-only" name="add"></ion-icon>
         </ion-button>
       </ion-item>
+
+      
       <div class="cart-items" class="ion-margin-end">
         <div class="item-info" mode="ios" *ngFor="let p of cart">
 
@@ -61,7 +63,6 @@
           </div>
         </div>
   </div>
-
       <ion-button *ngIf="!enableCustomButton" (click)="placeOrder()" expand="block">
         Add Subscription
       </ion-button>

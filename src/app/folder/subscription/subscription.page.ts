@@ -41,7 +41,7 @@ export class SubscriptionPage implements OnInit {
   async getAllSubscripsti() {
 
     let loading = await this.loadingController.create({
-      message: "Loading Subscripstion...",
+      message: "Loading Subscription...",
       spinner: "lines"
     })
 

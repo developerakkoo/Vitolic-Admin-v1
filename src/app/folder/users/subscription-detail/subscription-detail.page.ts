@@ -297,15 +297,7 @@ export class SubscriptionDetailPage implements OnInit {
   // }
   async presentActionSheet() {
     console.log(this.selectedAddress);
-    let addressArray = [{
-      text: "Add New Address",
-      icon: "add",
-      handler: () => {
-        // this.openAddressPage();
-        console.log("Route to address");
-
-      }
-    }]
+    let addressArray = []
 
     this.selectedAddress.forEach(element => {
       console.log(element['useradd']);
@@ -538,7 +530,7 @@ export class SubscriptionDetailPage implements OnInit {
   
   async openCustomPage() {
     this.subType = "Custom";
-    this.router.navigate(['folder', 'users', 'custom', this.productId, this.quantity]);
+    this.router.navigate(['folder', 'users', 'custom', this.productId, this.quantity, this.activeSelectedAddress, this.userId]);
   }
 
   close() {

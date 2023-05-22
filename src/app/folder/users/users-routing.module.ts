@@ -25,7 +25,7 @@ const routes: Routes = [
     loadChildren: () => import('./subscription-detail/subscription-detail.module').then( m => m.SubscriptionDetailPageModule)
   },
   {
-    path: 'custom/:productId/:amount',
+    path: 'custom/:productId/:amount/:address/:userId',
     loadChildren: () => import('./custom/custom.module').then( m => m.CustomPageModule)
   }
 

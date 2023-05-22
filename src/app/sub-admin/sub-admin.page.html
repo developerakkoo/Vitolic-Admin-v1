@@ -8,5 +8,20 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-text *ngIf="admin.length == 0" color="dark" class="ion-text-center">
+    <h6>No Sub Admin's Registered!</h6>
+  </ion-text>
+<ion-grid>
+  <ion-row>
+    <ion-col size="6" offset="2">
+      <ion-list>
+        <ion-item *ngFor="let item of admin">
+          <ion-label> {{item.email}} </ion-label>
+          <ion-icon slot="end" name="trash" (click)="deleteAdminAlertConfirm(item._id)"></ion-icon>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+    <ion-col size="6"></ion-col>
+  </ion-row>
+</ion-grid>
 </ion-content>

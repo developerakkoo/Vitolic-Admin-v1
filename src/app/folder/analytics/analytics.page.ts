@@ -58,14 +58,14 @@ export class AnalyticsPage implements OnInit {
    showYAxisLabel = true;
    yAxisLabel = 'Order Placed';
   // options
-  gradient: boolean = true;
+  gradient: boolean = false;
   showLegend: boolean = false;
   showLabels: boolean = true;
   isDoughnut: boolean = false;
   legendPosition: string = 'above';
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#2dd36f', '#eb445a', '#ffc409', '#92949c']
   };
 
   userCount;
@@ -85,9 +85,7 @@ export class AnalyticsPage implements OnInit {
   orderByDateSub: Subscription;
 
 
-  public pieChartLabels = ['Sales Q1', 'Sales Q2', 'Sales Q3', 'Sales Q4'];
-  public pieChartData = [120, 150, 180, 90];
-  public pieChartType = 'pie';
+ 
 
 
   // @ViewChild(BaseChartDirective) chart?: BaseChartDirective;

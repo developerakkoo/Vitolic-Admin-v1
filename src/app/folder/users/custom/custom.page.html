@@ -5,5 +5,56 @@
 </ion-header>
 
 <ion-content>
+<ion-card>
+  <ion-card-content class="ion-no-margin" class="ion-no-padding">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-align-items-center">
+        <ion-col size="4" class="ion-align-self-center">
+          <img style="position:sticky;" [src]="itemImage">
+        </ion-col>
+        <ion-col class="ion-margin-start" size="8" class="ion-align-self-end">
+          <div class="container">
+            <ion-text color="dark">
+              <h4>{{title}} </h4>
+              <ion-label>
+                <p>Regular price</p>
+                <p> <strong>{{price | currency:"INR"}}</strong> </p>
+              </ion-label>
+            </ion-text>
+          </div>
+          <ion-row class="ion-align-items-start">
+            <ion-col size="12">
+              <ion-text class="ion-text-left" color="primary">
+                <h2></h2>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+<ion-text class="ion-margin-start" color="dark">
+  <h5>Select days you want delivery</h5>
+</ion-text>
 
+<ion-datetime
+size="cover"
+(ionChange)="dateChanged($event)"
+presentation="date"
+[min]="dateTillDisabled"
+[multiple]="true"
+
+></ion-datetime>
 </ion-content>
+
+<ion-footer translucent="true" class="ion-no-border" mode="md">
+<ion-toolbar color="translucent">
+  <ion-button expand="full" size="large" class="main-button" (click)="placeOrder()" routerDirection="forward">
+    Continue</ion-button>
+</ion-toolbar>
+</ion-footer>

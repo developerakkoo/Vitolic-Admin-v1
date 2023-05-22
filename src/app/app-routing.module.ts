@@ -94,10 +94,8 @@ const routes: Routes = [
   {
     path: 'sub-admin',
     loadChildren: () => import('./sub-admin/sub-admin.module').then( m => m.SubAdminPageModule)
-  },  {
-    path: 'custom',
-    loadChildren: () => import('./users/custom/custom.module').then( m => m.CustomPageModule)
   },
+
 
 
 

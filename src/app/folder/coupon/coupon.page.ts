@@ -54,7 +54,7 @@ export class CouponPage implements OnInit {
   })
 
   await loading.present();
-    this.getCouponSub = this.http.get(environment.Url +'/promo')
+    this.getCouponSub = this.http.get(environment.Url +'/coupon')
     .subscribe(async (p) =>{
       console.log(p);
       this.coupons = p['promo']
