@@ -40,8 +40,8 @@ export class AddProductPage implements OnInit {
       units :[,[Validators.required]],
       Stock :[,[Validators.required]],
       d1 :[,[Validators.required, Validators.min(20)]],
-      d2 :[,[Validators.required, Validators.min(20)]],
-      d3 :[,[Validators.required, Validators.min(20)]],
+      d2 :[""],
+      d3 :[""],
     })
   }
 
